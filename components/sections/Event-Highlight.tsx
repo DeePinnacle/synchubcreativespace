@@ -1,21 +1,3 @@
-// Destination in the project: components/sections/event-highlights-section.tsx
-// Depends on: motion/react (Framer Motion), lucide-react, next/image
-// Usage: import { EventHighlightsSection } from "@/components/sections/event-highlights-section"
-//        <EventHighlightsSection /> on app/(site)/page.tsx (Homepage)
-//
-// Notes:
-// - This is a Client Component (interactivity: hover, add-to-cart state, scroll-triggered motion).
-// - EVENT_DAYS below is placeholder content. No data layer is wired in yet (no useQuery, no
-//   server action, no Prisma-backed type) so per Rule 1 this stays in components/sections/,
-//   not features/schedule/ — move it once a real EventDay data dependency lands.
-// - Card surface is intentionally white with a green-to-blue gradient border, as requested —
-//   this is a deliberate accent departure from the site's default dark card surface
-//   (Section 10's #121212/#1a1a1a hierarchy), scoped to just these cards. Everything else on
-//   the section (the dark section background, header copy, ambient glow) is unchanged.
-// - Each card now renders a real next/image when `imageUrl` is supplied. Until real event
-//   photography (Section 10: "no stock photos") is available, cards fall back to a themed
-//   gradient + icon placeholder so the layout never breaks on a missing asset.
-
 "use client"
 
 import { useState } from "react"
@@ -65,6 +47,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     description:
       "Cultural exhibitions, art competitions, and the grand opening of Creative Week.",
     icon: "cultural",
+    imageUrl: "cultural-day.jpeg"
   },
   {
     slug: "business-growth-workshop",
@@ -74,6 +57,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     description:
       "Brand clinics, fireside chats with business gurus, and media mischief workshops.",
     icon: "business",
+    imageUrl: "business-talk.jpeg"
   },
   {
     slug: "film-makers-wednesday",
@@ -83,6 +67,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     description:
       "YouTube and Canva monetization workshops, podcast initiation, and short film showcases.",
     icon: "film",
+    imageUrl: "film.jpeg"
   },
   {
     slug: "tech-innovation",
@@ -91,6 +76,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     title: "Tech & Innovation",
     description: "Tech discussions, live demonstrations, and startup competitions.",
     icon: "tech",
+    imageUrl: "tech.jpeg"
   },
   {
     slug: "community-wellness",
@@ -99,6 +85,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     title: "Community & Wellness",
     description: "Mind Spa art-therapy sessions and belt-it-out open mic nights.",
     icon: "wellness",
+    imageUrl: "community.jpeg"
   },
   {
     slug: "grand-showcase-awards",
@@ -107,6 +94,7 @@ const EVENT_DAYS: EventDayHighlight[] = [
     title: "Grand Showcase & Awards",
     description: "Awards night extravaganza and a glam runway spectacle.",
     icon: "awards",
+    imageUrl: "award.jpeg"
   },
 ]
 
@@ -159,7 +147,7 @@ export function EventHighlightsSection({
           transition={{ duration: 0.5, delay: 0.15 }}
           className="mt-14 flex items-center justify-center gap-3 sm:justify-start"
         >
-          <span className="h-px w-8 bg-gradient-to-r from-[#4caf50] to-[#1e88e5]" />
+          <span className="h-px w-8 bg-linear-to-r from-primary to-secondary" />
           <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-gray">
             Event highlights by day
           </h3>
@@ -205,23 +193,24 @@ function EventDayCard({ day, index, onAddToCart, onGetTicket }: Readonly<EventDa
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: index * 0.08, ease: "easeOut" }}
       whileHover={{ y: -6 }}
-      className="group relative rounded-2xl bg-gradient-to-br from-[#4caf50] to-[#1e88e5] p-[1.5px] transition-shadow duration-300 hover:shadow-[0_24px_48px_-24px_rgba(30,136,229,0.45)]"
+      className="group relative rounded-2xl bg-linear-to-br from-primary to-secondary p-[1.5px] transition-shadow duration-300 hover:shadow-[0_24px_48px_-24px_rgba(30,136,229,0.45)]"
     >
       <article className="relative flex h-full flex-col overflow-hidden rounded-2xl bg-white">
         {/* image / themed placeholder */}
-        <div className="relative h-44 w-full overflow-hidden">
+        <div className="relative h-52 w-full overflow-hidden">
           {day.imageUrl ? (
             <Image
-              src={day.imageUrl}
+              src={`/${day.imageUrl}`}
               alt={day.title}
               fill
+              priority
               sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
               className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
             />
           ) : (
             <>
               <div
-                className="absolute inset-0 scale-100 bg-gradient-to-br from-[#173d1c] via-[#14262f] to-[#0d2338] transition-transform duration-500 ease-out group-hover:scale-110"
+                className="absolute inset-0 scale-100 bg-linear-to-br from-[#173d1c] via-[#14262f] to-[#0d2338] transition-transform duration-500 ease-out group-hover:scale-110"
                 aria-hidden="true"
               />
               <div
@@ -241,7 +230,7 @@ function EventDayCard({ day, index, onAddToCart, onGetTicket }: Readonly<EventDa
             </>
           )}
 
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
 
           <span className="absolute left-3 top-3 rounded-full border border-white/10 bg-black/40 px-2.5 py-1 text-[11px] font-medium text-[#e0e0e0] backdrop-blur-sm">
             {day.dayLabel}
@@ -271,7 +260,7 @@ function EventDayCard({ day, index, onAddToCart, onGetTicket }: Readonly<EventDa
           >
             View event details
             <ArrowRight
-              className="h-3.5 w-3.5 shrink-0 text-[#1e88e5] transition-transform duration-200 group-hover:translate-x-0.5"
+              className="h-3.5 w-3.5 shrink-0 text-secondary transition-transform duration-200 group-hover:translate-x-0.5"
               strokeWidth={2}
             />
           </Link>
@@ -285,7 +274,7 @@ function EventDayCard({ day, index, onAddToCart, onGetTicket }: Readonly<EventDa
             >
               {added ? (
                 <>
-                  <Check className="h-3.5 w-3.5 text-[#4caf50]" strokeWidth={2.5} />
+                  <Check className="h-3.5 w-3.5 text-primary" strokeWidth={2.5} />
                   Added
                 </>
               ) : (

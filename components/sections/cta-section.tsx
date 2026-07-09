@@ -76,7 +76,7 @@ export function CTASection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="rounded-2xl bg-[#121212] border border-[#1a1a1a] p-8 sm:p-12 shadow-2xl relative overflow-hidden group"
+            className="rounded-2xl bg-muted-gray border border-[#1a1a1a] p-8 sm:p-12 shadow-2xl relative overflow-hidden group"
           >
             {/* Embedded subtle wave/glow highlight */}
             <div className="absolute inset-0 bg-gradient-to-r from-[#4caf50]/5 to-[#1e88e5]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

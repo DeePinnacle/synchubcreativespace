@@ -127,7 +127,7 @@ export function AboutSection() {
           >
             <Button
               asChild
-              className="rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-black hover:opacity-90"
+              className="rounded-full h-14 bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-black hover:opacity-90"
             >
               <Link href="/about">
                 Read more about Synchub
@@ -150,7 +150,7 @@ export function AboutSection() {
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
             <Image
-              src="/images/about/creative-centre.jpg"
+              src="/about.jpeg"
               alt="Creatives at work inside Synchub Creative Centre"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"

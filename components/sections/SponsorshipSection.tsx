@@ -90,7 +90,7 @@ export function SponsorshipSection() {
   const [selectedTier, setSelectedTier] = useState<SponsorshipTier | null>(null);
 
   return (
-    <section className="relative w-full bg-muted-gray text-[#f5f5f5] py-20 px-4 md:px-8 overflow-hidden select-none">
+    <section className="relative w-full text-muted-gray bg-off-white py-20 px-4 md:px-8 overflow-hidden select-none">
       {/* Background Ambience / Glows */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-secondary opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
@@ -113,10 +113,10 @@ export function SponsorshipSection() {
               Partner With Us
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-[#f5f5f5] mb-6">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-muted-gray mb-6">
             Future Forward: Reimagining Africa&apos;s <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">Creative Power</span>
           </h2>
-          <p className="text-[#9e9e9e] text-base md:text-lg leading-relaxed">
+          <p className="text-muted-gray text-base md:text-lg leading-relaxed">
             Align your brand with the permanent home of African creativity. Drive premium corporate positioning, build direct visibility with market-shaping minds, and advance the 1 Million Creatives mission.
           </p>
         </motion.div>
@@ -133,7 +133,7 @@ export function SponsorshipSection() {
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="group relative flex flex-col justify-between bg-[#121212] border border-[#212121] hover:border-secondary/40 rounded-2xl p-6 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_10px_40px_rgba(30,136,229,0.1)] overflow-hidden"
+                className="group relative flex flex-col justify-between bg-muted-gray border border-[#212121] hover:border-secondary/40 rounded-2xl p-6 transition-all duration-300 shadow-[0_4px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_10px_40px_rgba(30,136,229,0.1)] overflow-hidden"
               >
                 {/* Decorative border gradient glow top accent */}
                 <div className="absolute top-0 left-0 w-full h-[3px] bg-linear-to-r from-primary to-secondary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -182,13 +182,13 @@ export function SponsorshipSection() {
                 <div className="space-y-3 mt-auto pt-4 border-t border-[#212121]/50">
                   <Button
                     onClick={() => setSelectedTier(tier)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-[#1a1a1a] hover:bg-[#212121] text-xs font-bold text-[#e0e0e0] flex items-center justify-center gap-2 border border-[#212121] hover:border-[#9e9e9e]/30 transition-all duration-200"
+                    className="w-full h-14 py-2.5 px-4 rounded-xl bg-[#1a1a1a] hover:bg-[#212121] text-xs font-bold text-[#e0e0e0] flex items-center justify-center gap-2 border border-[#212121] hover:border-[#9e9e9e]/30 transition-all duration-200"
                   >
                     <Info className="w-3.5 h-3.5" />
                     View Package Details
                   </Button>
                   
-                  <Button className="w-full py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md">
+                  <Button className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md">
                     Select This Tier
                     <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
                   </Button>
@@ -204,7 +204,7 @@ export function SponsorshipSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-          className="mt-16 bg-[#121212] border border-[#212121] rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+          className="mt-16 bg-muted-gray border border-[#212121] rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
         >
           <div className="absolute top-0 right-0 w-64 h-64 bg-linear-to-bl from-secondary/5 to-transparent blur-3xl rounded-full pointer-events-none" />
           <div>
@@ -214,10 +214,10 @@ export function SponsorshipSection() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full md:w-auto">
-            <Button className="w-full sm:w-auto whitespace-nowrap py-3 px-6 rounded-xl bg-transparent hover:bg-[#1a1a1a] text-xs font-bold text-[#f5f5f5] border border-[#212121] hover:border-[#9e9e9e]/30 transition-all">
+            <Button className="w-full h-14 sm:w-auto whitespace-nowrap py-3 px-6 rounded-xl bg-transparent hover:bg-[#1a1a1a] text-xs font-bold text-[#f5f5f5] border border-[#212121] hover:border-[#9e9e9e]/30 transition-all">
               Request Offline Invoice
             </Button>
-            <Button className="w-full sm:w-auto whitespace-nowrap py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-bold text-[#0a0a0a] hover:opacity-95 transition-all shadow-lg">
+            <Button className="w-full h-14 sm:w-auto whitespace-nowrap py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-bold text-[#0a0a0a] hover:opacity-95 transition-all shadow-lg">
               Contact Partnership Team
             </Button>
           </div>

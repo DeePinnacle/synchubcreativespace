@@ -10,23 +10,18 @@ export function HeroSection() {
   const MapPinIcon = ICON_MAP.mapPin;
 
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#0a0a0a]">
-      {/* Background photography — replace /public/images/hero-bg.jpg with the
-          real event photo. Falls back to a plain black canvas until then. */}
+    <section className="relative isolate flex min-h-screen items-center overflow-hidden bg-primary-dark">
       <Image
-        src="/party-2.jpg"
+        src="/hero-img.jpeg"
         alt=""
         fill
         priority
         sizes="100vw"
         className="object-cover object-center"
       />
-
-      {/* Dark scrim so text stays readable over the photo, per the design
-          system's "subtle dark gradient overlay on photos" rule. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/85"
+        className="absolute inset-0 bg-linear-to-b from-black/90 via-black/60 to-black/85"
       />
 
       <div className="relative mx-auto max-w-4xl px-4 py-24 text-center sm:px-6 lg:px-8">
@@ -34,7 +29,7 @@ export function HeroSection() {
           <HeroRevealItem>
             <div className="mb-8 inline-flex flex-wrap items-center justify-center gap-x-4 gap-y-2 rounded-full border border-white/15 bg-black/40 px-5 py-2.5 text-sm font-medium text-neutral-200 backdrop-blur-sm">
               <span className="inline-flex items-center gap-1.5">
-                <CalendarIcon size={15} className="text-[#4caf50]" />
+                <CalendarIcon size={15} className="text-primary" />
                 {SITE_CONFIG.dateLabel}
               </span>
               <span aria-hidden="true" className="text-white/20">
@@ -50,7 +45,7 @@ export function HeroSection() {
           <HeroRevealItem>
             <h1 className="mx-auto max-w-3xl text-4xl font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl md:text-7xl">
               Future Forward: Reimagining Africa&apos;s{" "}
-              <span className="bg-linear-to-r from-[#4caf50] to-[#1e88e5] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Creative Power
               </span>
             </h1>
@@ -71,7 +66,7 @@ export function HeroSection() {
 
           <HeroRevealItem>
             <div className="mt-14 flex flex-col items-center gap-4">
-              <span className="bg-linear-to-r from-[#4caf50] to-[#1e88e5] bg-clip-text text-xs font-bold uppercase tracking-[0.15em] text-transparent">
+              <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-xs font-bold uppercase tracking-[0.15em] text-transparent">
                 Doors open in
               </span>
               <EventCountdown targetDate={SITE_CONFIG.startDate} />
