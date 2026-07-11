@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Check, Info, ArrowRight, X, Building2, ShieldCheck, Award, Users, LucideIcon } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { WaveBg } from '../shared/Wave-Bg';
 
 // Define the Sponsorship Tier interface
 interface SponsorshipTier {
@@ -91,6 +92,9 @@ export function SponsorshipSection() {
 
   return (
     <section className="relative w-full text-muted-gray bg-off-white py-20 px-4 md:px-8 overflow-hidden select-none">
+      <WaveBg className="pointer-events-none absolute -top-10 left-0 z-0 h-[640px] w-full">
+        
+      </WaveBg>
       {/* Background Ambience / Glows */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-96 h-96 bg-secondary opacity-[0.03] blur-[120px] rounded-full pointer-events-none" />

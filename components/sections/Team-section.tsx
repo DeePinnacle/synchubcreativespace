@@ -35,8 +35,6 @@ type TeamMember = {
   socials: Partial<Record<keyof typeof SOCIAL_ICON_MAP, string>>;
 };
 
-// Placeholder roster — swap photoUrl/handles for real assets before launch.
-// Keep this shape if it later becomes a features/team Prisma model.
 const TEAM: TeamMember[] = [
   {
     id: "founder",
@@ -116,7 +114,7 @@ function SocialRow({
 
   return (
     <div className="mt-5 flex items-center gap-3 border-t border-white/6 pt-4">
-      <a
+      <Link
         href={`mailto:${email}`}
         aria-label={`Email ${email}`}
         className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-[#9e9e9e] transition-colors hover:border-transparent hover:text-[#f5f5f5]"
@@ -130,7 +128,7 @@ function SocialRow({
         }}
       >
         <Mail className="h-3.5 w-3.5" />
-      </a>
+      </Link>
 
       {entries.map(([key, handle]) => {
         const Icon = SOCIAL_ICON_MAP[key];
@@ -203,7 +201,7 @@ export function TeamSection() {
                 delay: (i % 3) * 0.08,
                 ease: "easeOut",
               }}
-              className="group overflow-hidden rounded-2xl border border-white/6 bg-[#121212] shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-colors hover:border-white/12"
+              className="group overflow-hidden rounded-2xl border border-white/6 bg-muted-gray shadow-[0_8px_30px_rgba(0,0,0,0.35)] transition-colors hover:border-white/12"
             >
               <div
                 className="relative h-60 w-full overflow-hidden"

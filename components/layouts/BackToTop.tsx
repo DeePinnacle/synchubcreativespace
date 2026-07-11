@@ -49,10 +49,10 @@ export function BackToTop(): JSX.Element {
             "border-gray-800 bg-[#111111] text-gray-400 hover:border-blue-600/60 hover:bg-blue-950/40 hover:text-blue-400",
             /* Light mode */
             "dark:border-gray-800 dark:bg-[#111111] dark:text-gray-400 dark:hover:border-blue-600/60 dark:hover:bg-blue-950/40 dark:hover:text-blue-400",
-            "border-gray-200 bg-white text-gray-500 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600",
+            "border-gray-200 bg-linear-to-r from-primary to-secondary text-off-white hover:border-blue-400 hover:bg-blue-50 hover:text-blue-600",
           ].join(" ")}
         >
-          <ArrowUp className="h-4 w-4" aria-hidden="true" />
+          <ArrowUp className="h-4 w-4 text-off-white" aria-hidden="true" />
         </motion.button>
       )}
     </AnimatePresence>

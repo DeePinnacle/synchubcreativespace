@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -82,11 +81,9 @@ export function Navbar() {
           <div className="flex flex-row items-center gap-1">
             <Sheet>
               <SheetTrigger asChild>
-                <Button variant={"ghost"}>
-                  <Menu className="w-10! h-10!" />
-                </Button>
+                  <Menu className="w-10! h-10! bg-linear-to-r from-primary to-secondary mr-8" />
               </SheetTrigger>
-              <SheetContent side="right">
+              <SheetContent side="right" className="bg-[#0a0a0a]">
                 <NavLinks />
                 <SheetFooter>
                   <Link
@@ -118,13 +115,13 @@ const NavLinks = () => {
   return (
     <ul
       className={cn(
-        `w-162.5 h-14 md:flex md:flex-row md:items-center md:justify-between`,
+        `w-162.5 mt-20 md:flex md:flex-row md:items-center md:justify-between md:mt-0`,
       )}
     >
       {navLinks.map((item) => (
         <li
           key={item.id}
-          className="text-md text-white font-light my-5 px-2 py-2 hover:bg-primary-gold hover:transition hover:duration-500 hover:delay-100 hover:ease-in-out lg:my-2"
+          className="text-md text-off-white font-light my-5 px-2 py-2 hover:bg-primary-gold hover:transition hover:duration-500 hover:delay-100 hover:ease-in-out lg:my-2"
         >
           <Link href={`${item.to}`} className="block">
             {item.text}

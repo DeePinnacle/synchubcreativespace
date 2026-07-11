@@ -6,6 +6,8 @@ import { CTASection } from "@/components/sections/cta-section";
 import { PartnersStrip } from "@/features/home/components/partners-strip";
 import { TestimonialsSection } from "@/components/sections/Testimonial-section";
 import TeamSection from "@/components/sections/Team-section";
+import { GallerySection } from "@/features/gallery/components/Gallery-section";
+import { ContactSection } from "@/features/contact/components/Contact-Us";
 export default function Home() {
   return (
       <main>
@@ -17,6 +19,8 @@ export default function Home() {
         <CTASection />
         <TestimonialsSection />
         <TeamSection />
+        <GallerySection />
+        <ContactSection />
       </main>
   );
 }

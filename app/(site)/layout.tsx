@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk, Sora, Inter, Italianno } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layouts/SiteChrome";
+import Footer from "@/components/layouts/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -179,6 +180,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <SiteChrome />
         {children}
+        <Footer />
       </body>
     </html>
   );
