@@ -11,6 +11,7 @@ import {
   SheetFooter,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { CartSheet } from "@/components/shared/Cart-sheet";
 
 function useScrolled(threshold = 50) {
   const [scrolled, setScrolled] = useState(false);
@@ -64,7 +65,7 @@ export function Navbar() {
   return (
     <motion.nav
       className={cn(
-        "right-0 z-50 transition-colors duration-300 bg-[#0C121C]",
+        "right-0 z-50 transition-colors duration-300 bg-primary-dark",
         scrolled &&
           "fixed top-0 left-0 border border-border bg-black backdrop-blur-md shadow-lg",
       )}
@@ -76,19 +77,33 @@ export function Navbar() {
     >
       <div className="flex items-center justify-between p-2">
         <Logo />
-        {/* left hand */}
+
+        {/* Mobile screen drawer */}
         <div className="md:hidden">
           <div className="flex flex-row items-center gap-1">
+            <CartSheet />
             <Sheet>
               <SheetTrigger asChild>
-                  <Menu className="w-10! h-10! bg-linear-to-r from-primary to-secondary mr-8" />
+                <Menu className="w-10! h-10! bg-linear-to-r from-primary to-secondary mr-8" />
               </SheetTrigger>
-              <SheetContent side="right" className="bg-[#0a0a0a]">
+              <SheetContent side="right" className="bg-primary-dark">
                 <NavLinks />
-                <SheetFooter>
+                <SheetFooter className="flex flex-col gap-3 mt-6">
+                  {/* Become a Vendor Link (Mobile) */}
+                  <Link
+                    href="/vendor"
+                    className="group relative inline-flex items-center justify-center rounded-full p-[2px] text-sm font-semibold transition-transform hover:scale-[1.02] active:scale-[0.99]"
+                  >
+                    <span className="absolute inset-0 rounded-full bg-linear-to-r from-primary to-secondary" />
+                    <span className="relative w-full rounded-full bg-primary-dark px-6 py-2.5 text-center bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+                      Become a Vendor
+                    </span>
+                  </Link>
+
+                  {/* Get Tickets Link (Mobile) */}
                   <Link
                     href="/events"
-                    className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
+                    className="group inline-flex items-center justify-center rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
                   >
                     Get Tickets
                   </Link>
@@ -97,20 +112,43 @@ export function Navbar() {
             </Sheet>
           </div>
         </div>
-        {/* large screen */}
+
+        {/* Large screen navigation */}
         <div className="hidden md:block">
           <NavLinks />
         </div>
-        <Link
-          href="/events"
-          className="hidden group items-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99] md:inline-flex"
-        >
-          Get Tickets
-        </Link>
+
+        {/* Action Buttons (Desktop) */}
+        <div className="hidden md:flex md:items-center md:gap-3">
+          <CartSheet />
+
+          {/* Gradient Border & Gradient Text Button */}
+          <Link
+            href="/vendor"
+            className="group relative inline-flex items-center justify-center rounded-full p-[2px] text-sm font-semibold transition-transform border border-solid border-off-white hover:scale-[1.02] active:scale-[0.99]"
+          >
+            {/* Gradient border layer */}
+            {/* <span className="absolute inset-0 rounded-full bg-linear-to-r from-primary to-secondary" /> */}
+
+            {/* Inner transparent layer matching background */}
+            <span className="relative rounded-full bg-[#0C121C] px-6 py-2.5 bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
+              Become a Vendor
+            </span>
+          </Link>
+
+          {/* Solid Gradient Button */}
+          <Link
+            href="/events"
+            className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
+          >
+            Get Tickets
+          </Link>
+        </div>
       </div>
     </motion.nav>
   );
 }
+
 const NavLinks = () => {
   return (
     <ul
@@ -133,7 +171,9 @@ const NavLinks = () => {
 };
 
 const Logo = () => {
-  return <Link href="/">
-    <Image src="/logo.png" alt="Logo" width={100} height={100} />
-  </Link>
+  return (
+    <Link href="/">
+      <Image src="/logo.png" alt="Logo" width={100} height={100} />
+    </Link>
+  );
 };

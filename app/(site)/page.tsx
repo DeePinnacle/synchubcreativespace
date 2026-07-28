@@ -4,7 +4,7 @@ import { HeroSection } from "@/features/home/components/hero-section";
 import { SponsorshipSection } from "@/components/sections/SponsorshipSection";
 import { CTASection } from "@/components/sections/cta-section";
 import { PartnersStrip } from "@/features/home/components/partners-strip";
-import { TestimonialsSection } from "@/components/sections/Testimonial-section";
+import { TestimonialsSection } from "@/components/sections/TestimonialSection";
 import TeamSection from "@/components/sections/Team-section";
 import { GallerySection } from "@/features/gallery/components/Gallery-section";
 import { ContactSection } from "@/features/contact/components/Contact-Us";

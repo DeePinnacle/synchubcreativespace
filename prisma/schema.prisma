@@ -1,0 +1,215 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum PaymentMethod {
+  CARD
+  BANK_TRANSFER
+  USSD
+  INVOICE // sponsorship-only offline path
+}
+
+enum TicketType {
+  SINGLE_DAY
+  FULL_WEEK
+  VIP
+}
+
+enum SponsorshipTierName {
+  HEADLINE
+  GOLD
+  SILVER
+  COMMUNITY
+  CUSTOM
+}
+
+enum AdminRole {
+  SUPER_ADMIN
+  STAFF
+}
+
+enum ContactInquiryType {
+  GENERAL
+  SPONSORSHIP
+  PRESS
+  TICKETS
+}
+
+model AdminUser {
+  id           String    @id @default(cuid())
+  email        String    @unique
+  name         String
+  role         AdminRole @default(STAFF)
+  passwordHash String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model EventDay {
+  id          String            @id @default(cuid())
+  date        DateTime
+  title       String // e.g. "Cultural Day", "Tech & Innovation"
+  description String?
+  sessions    ScheduleSession[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+model ScheduleSession {
+  id          String   @id @default(cuid())
+  eventDay    EventDay @relation(fields: [eventDayId], references: [id])
+  eventDayId  String
+  title       String
+  startTime   DateTime
+  endTime     DateTime
+  description String?
+  speakers    Speaker[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Speaker {
+  id        String            @id @default(cuid())
+  name      String
+  role      String?
+  bio       String?
+  photoUrl  String?
+  sessions  ScheduleSession[]
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+}
+
+model GalleryImage {
+  id        String   @id @default(cuid())
+  url       String
+  caption   String?
+  createdAt DateTime @default(now())
+}
+
+model Ticket {
+  id        String      @id @default(cuid())
+  type      TicketType
+  price     Decimal
+  order     TicketOrder @relation(fields: [orderId], references: [id])
+  orderId   String
+  attendee  Attendee?
+  qrCode    String      @unique
+  usedAt    DateTime? // set when scanned at door
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model TicketOrder {
+  id            String         @id @default(cuid())
+  buyerName     String
+  buyerEmail    String
+  buyerPhone    String
+  quantity      Int
+  totalAmount   Decimal
+  paymentStatus PaymentStatus  @default(PENDING)
+  paymentMethod PaymentMethod?
+  tickets       Ticket[]
+  payment       Payment?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model Attendee {
+  id        String   @id @default(cuid())
+  ticket    Ticket   @relation(fields: [ticketId], references: [id])
+  ticketId  String   @unique
+  name      String
+  email     String
+  phone     String
+  checkedIn Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model SponsorshipTier {
+  id        String              @id @default(cuid())
+  name      SponsorshipTierName
+  amount    Decimal? // null for CUSTOM
+  benefits  String?
+  orders    SponsorshipOrder[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+}
+
+model Sponsor {
+  id            String             @id @default(cuid())
+  companyName   String
+  contactPerson String
+  email         String
+  logoUrl       String?
+  orders        SponsorshipOrder[]
+  partnerLogos  PartnerLogo[]
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+}
+
+model SponsorshipOrder {
+  id                 String         @id @default(cuid())
+  sponsor            Sponsor        @relation(fields: [sponsorId], references: [id])
+  sponsorId          String
+  tier               SponsorshipTier @relation(fields: [tierId], references: [id])
+  tierId             String
+  isCustom           Boolean        @default(false) // "Request a Custom Package" path
+  paymentStatus      PaymentStatus  @default(PENDING)
+  paymentMethod      PaymentMethod? // INVOICE = offline bank transfer path
+  payment            Payment?
+  showOnPartnersWall Boolean        @default(false) // flips true once PAID
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+}
+
+model Payment {
+  id                 String            @id @default(cuid())
+  provider           String // "paystack" | "flutterwave"
+  providerReference  String            @unique
+  amount             Decimal
+  status             PaymentStatus     @default(PENDING)
+  rawWebhookPayload  Json?
+  ticketOrder        TicketOrder?      @relation(fields: [ticketOrderId], references: [id])
+  ticketOrderId      String?           @unique
+  sponsorshipOrder   SponsorshipOrder? @relation(fields: [sponsorshipOrderId], references: [id])
+  sponsorshipOrderId String?           @unique
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+}
+
+model PartnerLogo {
+  id        String              @id @default(cuid())
+  sponsor   Sponsor             @relation(fields: [sponsorId], references: [id])
+  sponsorId String
+  logoUrl   String
+  tierName  SponsorshipTierName
+  visible   Boolean             @default(true)
+  createdAt DateTime            @default(now())
+}
+
+model ContactMessage {
+  id          String             @id @default(cuid())
+  name        String
+  email       String
+  message     String
+  inquiryType ContactInquiryType @default(GENERAL)
+  createdAt   DateTime           @default(now())
+}
+

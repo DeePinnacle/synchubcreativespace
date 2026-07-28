@@ -17,6 +17,7 @@ import {
   Check,
   type LucideIcon,
 } from "lucide-react"
+import { useCartStore, type EventDay } from "@/lib/stores/cart-store"
 
 // Rule 4: static ICON_MAP at module level, never inline / never inside component bodies.
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -32,10 +33,14 @@ export interface EventDayHighlight {
   slug: string
   dayLabel: string
   date: string
+  /** ISO date string (matches EventDay.date shape from Prisma) — used for the cart, `date` above stays as the display string. */
+  isoDate: string
   title: string
   description: string
   icon: keyof typeof ICON_MAP
   imageUrl?: string
+  /** Per-day ticket price in Naira. TODO: placeholder — final pricing is TBD per AGENT.md Section 12. */
+  price: number
 }
 
 const EVENT_DAYS: EventDayHighlight[] = [
@@ -43,60 +48,79 @@ const EVENT_DAYS: EventDayHighlight[] = [
     slug: "cultural-day",
     dayLabel: "Day 01",
     date: "Mon, Nov 23",
+    isoDate: "2026-11-23",
     title: "Cultural Day & Opening Ceremony",
     description:
       "Cultural exhibitions, art competitions, and the grand opening of Creative Week.",
     icon: "cultural",
-    imageUrl: "cultural-day.jpeg"
+    imageUrl: "cultural-day.jpeg",
+    price: 15000,
   },
   {
     slug: "business-growth-workshop",
     dayLabel: "Day 02",
     date: "Tue, Nov 24",
+    isoDate: "2026-11-24",
     title: "Business Growth Workshop",
     description:
       "Brand clinics, fireside chats with business gurus, and media mischief workshops.",
     icon: "business",
-    imageUrl: "business-talk.jpeg"
+    imageUrl: "business-talk.jpeg",
+    price: 15000,
   },
   {
     slug: "film-makers-wednesday",
     dayLabel: "Day 03",
     date: "Wed, Nov 25",
+    isoDate: "2026-11-25",
     title: "Film Makers Wednesday",
     description:
       "YouTube and Canva monetization workshops, podcast initiation, and short film showcases.",
     icon: "film",
-    imageUrl: "film.jpeg"
+    imageUrl: "film.jpeg",
+    price: 15000,
   },
   {
     slug: "tech-innovation",
     dayLabel: "Day 04",
     date: "Thu, Nov 26",
+    isoDate: "2026-11-26",
     title: "Tech & Innovation",
     description: "Tech discussions, live demonstrations, and startup competitions.",
     icon: "tech",
-    imageUrl: "tech.jpeg"
+    imageUrl: "tech.jpeg",
+    price: 15000,
   },
   {
     slug: "community-wellness",
     dayLabel: "Day 05",
     date: "Fri, Nov 27",
+    isoDate: "2026-11-27",
     title: "Community & Wellness",
     description: "Mind Spa art-therapy sessions and belt-it-out open mic nights.",
     icon: "wellness",
-    imageUrl: "community.jpeg"
+    imageUrl: "community.jpeg",
+    price: 15000,
   },
   {
     slug: "grand-showcase-awards",
     dayLabel: "Day 06",
     date: "Sat, Nov 28",
+    isoDate: "2026-11-28",
     title: "Grand Showcase & Awards",
     description: "Awards night extravaganza and a glam runway spectacle.",
     icon: "awards",
-    imageUrl: "award.jpeg"
+    imageUrl: "award.jpeg",
+    price: 25000,
   },
 ]
+
+// Converts "Day 01" / "Day 1" -> the cart store's "Day 1"–"Day 6" literal type.
+function toCartDay(dayLabel: string): EventDay {
+  const match = dayLabel.match(/\d+/)
+  const num = match ? Number(match[0]) : 1
+  return `Day ${num}` as EventDay
+}
 
 interface EventHighlightsSectionProps {
   days?: EventDayHighlight[]
@@ -179,8 +203,16 @@ interface EventDayCardProps {
 function EventDayCard({ day, index, onAddToCart, onGetTicket }: Readonly<EventDayCardProps>) {
   const [added, setAdded] = useState(false)
   const Icon = ICON_MAP[day.icon]
+  const addItem = useCartStore((state) => state.addItem)
 
   function handleAddToCart() {
+    addItem({
+      day: toCartDay(day.dayLabel),
+      date: day.isoDate,
+      title: day.title,
+      price: day.price,
+    })
+
     setAdded(true)
     onAddToCart?.(day.slug)
     window.setTimeout(() => setAdded(false), 1800)

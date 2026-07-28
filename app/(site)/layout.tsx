@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk, Sora, Inter, Italianno } from "next/f
 import "./globals.css";
 import { SiteChrome } from "@/components/layouts/SiteChrome";
 import Footer from "@/components/layouts/Footer";
+import { QueryProvider } from "@/components/providers/query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -178,9 +179,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${italianno.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteChrome />
-        {children}
-        <Footer />
+        <QueryProvider>
+          <SiteChrome />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

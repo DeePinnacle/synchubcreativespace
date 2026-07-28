@@ -424,7 +424,7 @@ function OurStorySection() {
           {/* TODO: replace with final event/interior photography once shot list is delivered */}
           <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border/60 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
             <Image
-              src="/about/our-story.jpg"
+              src="/Gallery-4.jpeg"
               alt="Inside Synchub Creative Centre, welcoming creatives into the space"
               fill
               sizes="(min-width: 768px) 50vw, 100vw"
@@ -444,11 +444,13 @@ function OurStorySection() {
 }
 
 function JourneySoFarSection() {
+  const shouldReduceMotion = useReducedMotion();
+
   const stats = [
-    { value: 1000, suffix: "+", label: "Creatives directly empowered" },
-    { value: 3000, suffix: "+", label: "Indirect beneficiaries" },
-    { value: 200, suffix: "+", label: "Events hosted" },
-    { value: 30, suffix: "+", label: "Training modules developed" },
+    { icon: "users" as IconKey, value: 1000, suffix: "+", label: "Creatives directly empowered" },
+    { icon: "handshake" as IconKey, value: 3000, suffix: "+", label: "Indirect beneficiaries" },
+    { icon: "calendar" as IconKey, value: 200, suffix: "+", label: "Events hosted" },
+    { icon: "penTool" as IconKey, value: 30, suffix: "+", label: "Training modules developed" },
   ];
 
   return (
@@ -458,63 +460,98 @@ function JourneySoFarSection() {
         colorA="rgba(30,136,229,0.16)"
         colorB="rgba(76,175,80,0.11)"
       />
-      <div className="relative mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_1.2fr] md:items-center">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={fadeUp}
-        >
-          <div className="mb-6 flex items-center gap-4">
-            <IconBadge icon="calendar" solid />
+
+      <div className="relative mx-auto max-w-6xl">
+        <div className="grid gap-14 md:grid-cols-2 md:items-center">
+          {/* Image anchor */}
+          <motion.div
+            initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: shouldReduceMotion ? 0 : 0.7, ease: "easeOut" }}
+            className="relative order-last md:order-first"
+          >
             {/* TODO: replace with final event photography */}
-            <div className="relative h-14 w-20 -rotate-2 overflow-hidden rounded-lg border border-border/60 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.7)]">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border/60 bg-linear-to-br from-primary/10 to-secondary/10 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] sm:aspect-[4/3] md:aspect-[4/5]">
               <Image
-                src="/about/journey-thumb.jpg"
+                src="/Gallery-6.jpeg"
                 alt="A past Synchub workshop in session"
                 fill
-                sizes="80px"
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover"
               />
-            </div>
-          </div>
-          <h2 className="mb-4 font-display text-3xl font-extrabold leading-tight text-foreground">
-            Our journey so far
-          </h2>
-          <p className="text-base leading-relaxed text-muted-foreground">
-            We&apos;ve hosted art exhibitions, trade fairs, cultural nights,
-            workshops, and seminars, attracting thousands of attendees. Our
-            space has become a hub for collaboration and innovation.
-          </p>
-          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-            But this is just the beginning. With your support, we can expand
-            our reach and impact even more creatives across Nigeria.
-          </p>
-        </motion.div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent" />
 
+              <div className="absolute left-5 top-5 rounded-full border border-white/15 bg-black/40 px-3.5 py-1.5 backdrop-blur-md">
+                <span className="font-mono text-[11px] uppercase tracking-[0.15em] text-[#f5f5f5]">
+                  Since 2020
+                </span>
+              </div>
+
+              <div className="absolute bottom-5 left-5 right-5 rounded-xl border border-white/10 bg-black/40 px-4 py-3 backdrop-blur-md">
+                <p className="text-sm font-medium text-[#f5f5f5]">
+                  Workshops, showcases, and cultural nights
+                </p>
+                <p className="mt-0.5 font-mono text-[11px] text-[#9e9e9e]">
+                  Synchub Creative Centre, Abuja
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Copy */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={fadeUp}
+          >
+            <SectionHeading eyebrow="Milestones" title="Our journey so far" />
+            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+              We&apos;ve hosted art exhibitions, trade fairs, cultural nights,
+              workshops, and seminars, attracting thousands of attendees. Our
+              space has become a hub for collaboration and innovation.
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+              But this is just the beginning. With your support, we can
+              expand our reach and impact even more creatives across Nigeria.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Stat strip */}
         <motion.dl
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={stagger}
-          className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-2"
+          className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4"
         >
-          {stats.map((stat) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeUp}
-              whileHover={{ y: -4 }}
-              className="rounded-2xl border border-border/60 bg-background/60 p-5 text-center shadow-[0_20px_40px_-25px_rgba(0,0,0,0.6)] transition-colors hover:border-secondary/40"
-            >
-              <dt className="sr-only">{stat.label}</dt>
-              <dd className="bg-linear-to-r from-primary to-secondary bg-clip-text font-display text-2xl font-bold text-transparent md:text-3xl">
-                <CountUpStat target={stat.value} suffix={stat.suffix} />
-              </dd>
-              <dd className="mt-2 font-mono text-[11px] uppercase leading-snug tracking-wide text-muted-foreground">
-                {stat.label}
-              </dd>
-            </motion.div>
-          ))}
+          {stats.map((stat) => {
+            const Icon = ICON_MAP[stat.icon];
+            return (
+              <motion.div
+                key={stat.label}
+                variants={fadeUp}
+                whileHover={{ y: -5 }}
+                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background p-6 shadow-[0_20px_40px_-28px_rgba(0,0,0,0.7)] transition-colors hover:border-primary/40"
+              >
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-[3px] scale-x-0 bg-linear-to-r from-primary to-secondary transition-transform duration-300 group-hover:scale-x-100"
+                  style={{ transformOrigin: "left" }}
+                />
+                <Icon className="mb-4 h-5 w-5 text-primary" />
+                <dt className="sr-only">{stat.label}</dt>
+                <dd className="font-display text-2xl font-bold text-foreground md:text-3xl">
+                  <CountUpStat target={stat.value} suffix={stat.suffix} />
+                </dd>
+                <dd className="mt-2 font-mono text-[11px] uppercase leading-snug tracking-wide text-muted-foreground">
+                  {stat.label}
+                </dd>
+              </motion.div>
+            );
+          })}
         </motion.dl>
       </div>
     </section>
@@ -1024,7 +1061,7 @@ function SupportMissionSection() {
 
             <Button
               asChild
-              className="mt-7 w-full rounded-full bg-linear-to-r from-primary to-secondary text-sm font-semibold text-black hover:opacity-90"
+              className="mt-7 w-full h-14 rounded-full bg-linear-to-r from-primary to-secondary text-sm font-semibold text-black hover:opacity-90"
             >
               <Link href="/contact">
                 Get in touch

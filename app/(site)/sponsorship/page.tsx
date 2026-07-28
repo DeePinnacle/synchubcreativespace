@@ -84,7 +84,7 @@ export default function SponsorshipPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 relative z-10">
         <div className="relative h-[350px] sm:h-[450px] w-full rounded-2xl overflow-hidden shadow-2xl group">
           <Image
-            src="/images/venue-showcase.jpg" // Sourced real photography setup placeholder
+            src="/sponsor.jpeg" // Sourced real photography setup placeholder
             alt="Synchub Creative Centre Hub"
             fill
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -100,29 +100,14 @@ export default function SponsorshipPage() {
         </div>
       </section>
 
-      {/* Blended Home Component View Integration (Optional overview block if structured presentational) */}
+      {/* Blended Home Component View Integration (Optional overview block if structured presentational)
       <section className="mb-24 opacity-90 border-y border-[#1a1a1a] bg-[#121212]/30 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs text-center uppercase tracking-widest text-[#9e9e9e] mb-6">Tier Architecture Overview</p>
-          {/* Invoking your pre-existing home matrix framework gracefully */}
+          Invoking your pre-existing home matrix framework gracefully
+        </div>
+      </section> */}
           <HomeSponsorshipSection />
-        </div>
-      </section>
-
-      {/* Main Core Form Application Segment */}
-      <section id="apply-sponsorship" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="bg-[#121212] rounded-2xl p-6 sm:p-12 border border-[#1a1a1a] shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-white">Select a Package</h2>
-            <p className="text-[#9e9e9e] mt-2 text-sm">
-              Complete your corporate credentials below. Payments initialized through verified gateways instantly clear your feature space on our active Partners Wall.
-            </p>
-          </div>
-
-          {/* Smart Leaf Interaction Engine Layer */}
-          <SponsorshipForm tiers={tiers} />
-        </div>
-      </section>
     </div>
   );
 }

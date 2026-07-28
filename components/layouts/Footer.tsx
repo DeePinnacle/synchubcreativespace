@@ -44,7 +44,7 @@ const SOCIAL_LINKS: { name: string; href: string; icon: AnyIcon }[] = [
   { name: "Facebook", href: "https://facebook.com/synchubcreativecentre", icon: FaFacebookF },
   { name: "LinkedIn", href: "https://linkedin.com/company/synchub-creative-centre", icon: FaLinkedinIn },
   { name: "YouTube", href: "https://youtube.com/@synchubcreative", icon: FaYoutube },
-  { name: "WhatsApp", href: "https://wa.me/2340000000000", icon: FaWhatsapp },
+  { name: "WhatsApp", href: "https://wa.me/08172388080", icon: FaWhatsapp },
 ];
 
 // ---------------------------------------------------------------------------
@@ -204,16 +204,16 @@ export function Footer() {
               <li className="flex items-center gap-2.5">
                 <ICON_MAP.mail className="h-4 w-4 shrink-0 text-[#4caf50]" />
                 <a
-                  href="mailto:hello@synchubcreativeweek.com"
+                  href="mailto:thesynchub@gmail.com"
                   className="transition-colors hover:text-[#f5f5f5]"
                 >
-                  hello@synchubcreativeweek.com
+                  thesynchub@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <ICON_MAP.phone className="h-4 w-4 shrink-0 text-[#4caf50]" />
-                <a href="tel:+2340000000000" className="transition-colors hover:text-[#f5f5f5]">
-                  +234 000 000 0000
+                <a href="tel:+2348172388080" className="transition-colors hover:text-[#f5f5f5]">
+                  +234 817 238 8080
                 </a>
               </li>
             </ul>

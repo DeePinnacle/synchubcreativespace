@@ -6,14 +6,14 @@ const CONTACT_DETAILS = [
   {
     key: "mail",
     label: "Email",
-    value: "hello@synchubcreativeweek.com",
-    href: "mailto:hello@synchubcreativeweek.com",
+    value: "thesynchub@gmail.com",
+    href: "mailto:thesynchub@gmail.com",
   },
   {
     key: "phone",
     label: "Phone / WhatsApp",
-    value: "+234 (0) 000 000 0000",
-    href: "tel:+2340000000000",
+    value: "+234 817 238 8080",
+    href: "tel:+2348172388080",
   },
   {
     key: "mapPin",

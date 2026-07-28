@@ -14,13 +14,83 @@ import {
 //   Instagram 
 } from "lucide-react";
 
-// Import your existing pre-built interactive components explicitly requested
+import { ICON_MAP } from "@/lib/icons";
+
 import { EventHighlightsSection } from "@/components/sections/Event-Highlight";
 import { SponsorshipSection } from "@/components/sections/SponsorshipSection";
 
 // Client-interactive wrapper component for adding smooth Framer Motion elements 
 // keeping within the Next.js Server Component boundaries by default.
 import { ClientMotionWrapper } from "@/components/shared/Client-Motion-Wrapper";
+
+type Accent = "green" | "blue";
+
+const ACCENT_STYLES: Record<Accent, { icon: string; iconBg: string; hoverBorder: string; plus: string }> = {
+  green: {
+    icon: "text-[#4caf50]",
+    iconBg: "bg-[#4caf50]/10",
+    hoverBorder: "group-hover:border-[#4caf50]/40",
+    plus: "text-[#4caf50]",
+  },
+  blue: {
+    icon: "text-[#1e88e5]",
+    iconBg: "bg-[#1e88e5]/10",
+    hoverBorder: "group-hover:border-[#1e88e5]/40",
+    plus: "text-[#1e88e5]",
+  },
+};
+
+const METRICS = [
+  {
+    index: "01",
+    iconKey: "users",
+    accent: "green",
+    value: "2,000",
+    suffix: "+",
+    meta: "in-person attendees",
+    label: "Massive Reach",
+    text: "Summit attendees expected across the 6 days.",
+  },
+  {
+    index: "02",
+    iconKey: "trending-up",
+    accent: "blue",
+    value: "15,000",
+    suffix: "+",
+    meta: "media impressions",
+    label: "Digital Footprint",
+    text: "Reach traversing modern platforms.",
+  },
+  {
+    index: "03",
+    iconKey: "target",
+    accent: "green",
+    value: "Gen Z",
+    suffix: "",
+    meta: "and Millennial core",
+    label: "Targeted Influence",
+    text: "Immersive direct channels to cross-functional audiences.",
+  },
+  {
+    index: "04",
+    iconKey: "award",
+    accent: "blue",
+    value: "CSR",
+    suffix: "",
+    meta: "brand equity",
+    label: "Brand Equity",
+    text: "Deep CSR configuration with absolute youth empowerment.",
+  },
+] satisfies {
+  index: string;
+  iconKey: keyof typeof ICON_MAP;
+  accent: Accent;
+  value: string;
+  suffix: string;
+  meta: string;
+  label: string;
+  text: string;
+}[];
 
 export const metadata = {
   title: "Synchub Creative Week 2026 | Future Forward",
@@ -66,7 +136,7 @@ export default function SynchubCreativeWeekPage() {
             <ClientMotionWrapper transitionType="fadeUp" delay={0.4}>
               <div className="flex flex-wrap items-center gap-4 pt-4">
                 <Link 
-                  href="/tickets" 
+                  href="/events/#schedule" 
                   className="px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#4caf50] to-[#1e88e5] text-xs font-extrabold tracking-wider text-[#0a0a0a] uppercase transition-all duration-300 hover:opacity-90 active:scale-[0.98] shadow-lg flex items-center gap-2"
                 >
                   Get Your Tickets
@@ -91,7 +161,7 @@ export default function SynchubCreativeWeekPage() {
               {/* Primary Visual Showcase Card */}
               <div className="absolute top-4 left-4 w-[85%] h-[75%] rounded-2xl overflow-hidden border border-[#262626] shadow-[0_8px_32px_rgba(0,0,0,0.5)] bg-[#121212] group transition-all duration-500 hover:border-[#4caf50]/40">
                 <Image
-                  src="/images/creative-community.jpeg" 
+                  src="/community.jpeg" 
                   alt="Synchub Creative Collective Community"
                   fill
                   priority
@@ -107,7 +177,7 @@ export default function SynchubCreativeWeekPage() {
               {/* Offset Overlapping Creative Workshop Card */}
               <div className="absolute bottom-4 right-4 w-[65%] h-[55%] rounded-2xl overflow-hidden border border-[#262626] shadow-[0_12px_40px_rgba(0,0,0,0.7)] bg-[#121212] group transition-all duration-500 hover:border-[#1e88e5]/40">
                 <Image
-                  src="/images/art-therapy.jpeg" 
+                  src="/Gallery-2.jpeg" 
                   alt="Creative Design & Art Studio Session"
                   fill
                   className="object-cover opacity-75 group-hover:scale-105 transition-transform duration-700"
@@ -124,42 +194,81 @@ export default function SynchubCreativeWeekPage() {
       </section>
 
       {/* 2. CORE METRICS / SUMMARY SECTION */}
-      <section className="py-20 px-6 max-w-7xl mx-auto relative z-10 border-b border-[#1a1a1a]">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-5 space-y-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-[#1e88e5]">Ecosystem Matrix</span>
-            <h2 className="text-3xl font-black text-white tracking-tight">
-              Why Engage With Synchub Creative Week?
-            </h2>
-            <p className="text-[#a3a3a3] text-sm leading-relaxed">
-              As Nigeria cements its status as Africa&apos;s creative hub, Synchub Creative Week offers an elite 
-              conduit for brands to directly engage with the fastest-growing demographic: the new generation of 
-              digitally-native creative specialists, creative technology developers, and cultural innovators.
-            </p>
-          </div>
+<section className="py-20 px-6 max-w-7xl mx-auto relative z-10 border-b border-[#1a1a1a]">
+  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+    <div className="lg:col-span-5 flex flex-col">
+      <span className="text-xs font-bold uppercase tracking-widest text-[#1e88e5] font-mono">
+        Ecosystem Matrix
+      </span>
+      <h2 className="text-3xl font-black tracking-tight mt-4">
+        <span className="text-muted-gray">Why Engage With </span>
+        <span className="bg-linear-to-r from-[#4caf50] to-[#1e88e5] bg-clip-text text-transparent">
+          Synchub Creative Week
+        </span>
+        <span className="text-muted-gray">?</span>
+      </h2>
+      <p className="text-muted-gray text-sm leading-relaxed mt-4">
+        As Nigeria cements its status as Africa&apos;s creative hub, Synchub Creative
+        Week offers an elite conduit for brands to directly engage with the
+        fastest-growing demographic: the new generation of digitally-native
+        creative specialists, creative technology developers, and cultural
+        innovators.
+      </p>
 
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {[
-              { icon: Users, label: "Massive Reach", text: "Over 2,000+ in-person summit attendees expected across the 6 days." },
-              { icon: TrendingUp, label: "Digital Footprint", text: "Targeting 15,000+ digital media impressions traversing modern platforms." },
-              { icon: Target, label: "Targeted Influence", text: "Immersive direct channels to cross-functional Gen Z and Millennial audiences." },
-              { icon: Award, label: "Brand Equity", text: "Deep Corporate Social Responsibility configuration with absolute youth empowerment." }
-            ].map((stat, i) => (
-              <div 
-                key={i} 
-                className="p-5 rounded-2xl bg-[#121212] border border-[#1f1f1f] transition-all duration-300 hover:border-[#262626] hover:translate-y-[-2px] group"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#1a1a1a] flex items-center justify-center border border-[#262626] group-hover:border-[#4caf50]/40 transition-colors">
-                  <stat.icon className="w-5 h-5 text-[#4caf50]" />
-                </div>
-                <h3 className="text-sm font-bold text-white mt-4 mb-1">{stat.label}</h3>
-                <p className="text-xs text-[#a3a3a3] leading-relaxed">{stat.text}</p>
-              </div>
-            ))}
-          </div>
+      {/* TODO: replace with final photography — extract via pdfimages from event
+          brochure, save to public/images/event/ following existing naming convention.
+          Real event photography only, per Section 10 — no stock photos. */}
+      <div className="relative rounded-2xl overflow-hidden border border-[#1f1f1f] mt-6 flex-1 min-h-[220px]">
+        <Image
+          src="/film.jpeg"
+          alt="Synchub Creative Centre, Abuja"
+          fill
+          className="object-cover"
+        />
+        <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 to-transparent p-4">
+          <p className="text-xs font-semibold text-white">Synchub Creative Centre</p>
+          <p className="text-[11px] text-[#a3a3a3]">Abuja, Nigeria</p>
         </div>
-      </section>
+      </div>
+    </div>
 
+    <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {METRICS.map((stat) => {
+        const accent = ACCENT_STYLES[stat.accent];
+        const Icon = ICON_MAP[stat.iconKey];
+        return (
+          <div
+            key={stat.index}
+            className="relative p-5 rounded-2xl bg-muted-gray border border-[#1f1f1f] transition-all duration-300 hover:bg-[#1a1a1a] hover:border-[#262626] hover:translate-y-[-2px] group"
+          >
+            <span className="absolute top-5 right-5 text-[11px] font-mono text-[#4a4a4a]">
+              {stat.index}
+            </span>
+
+            <div
+              className={`w-10 h-10 rounded-xl flex items-center justify-center border border-[#262626] transition-colors ${accent.iconBg} ${accent.hoverBorder}`}
+            >
+              <Icon className={`w-5 h-5 ${accent.icon}`} />
+            </div>
+
+            <div className="mt-4 flex items-baseline gap-0.5">
+              <span className="text-2xl font-black text-white tracking-tight">
+                {stat.value}
+              </span>
+              {stat.suffix && (
+                <span className={`text-2xl font-black ${accent.plus}`}>{stat.suffix}</span>
+              )}
+            </div>
+            <p className="text-[11px] text-[#7a7a7a] mt-0.5 mb-3">{stat.meta}</p>
+
+            <h3 className="text-sm font-bold text-white mb-1">{stat.label}</h3>
+            <p className="text-xs text-[#a3a3a3] leading-relaxed">{stat.text}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
       {/* 3. EVENT SCHEDULE SECTION (Utilizing existing component module) */}
       <div id="schedule" className="bg-[#0f0f0f] border-b border-[#1a1a1a]">
         <EventHighlightsSection />
@@ -172,7 +281,7 @@ export default function SynchubCreativeWeekPage() {
           
           <div className="relative h-[380px] rounded-3xl overflow-hidden border border-[#262626] group order-last lg:order-first">
             <Image 
-              src="/images/runway-glam.jpeg" 
+              src="/space.jpeg" 
               alt="Synchub Runway Fashion and Performance Showcase"
               fill
               className="object-cover brightness-[0.85] group-hover:scale-[1.02] transition-transform duration-700"
@@ -184,14 +293,14 @@ export default function SynchubCreativeWeekPage() {
             <div className="inline-block text-xs font-bold uppercase tracking-widest text-[#4caf50]">
               The 1 Million Creatives Catalyst
             </div>
-            <h2 className="text-3xl font-black text-white tracking-tight">
+            <h2 className="text-3xl font-bold bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent tracking-tight">
               A Permanent Foundation Beyond The Event
             </h2>
-            <p className="text-sm text-[#b3b3b3] leading-relaxed">
+            <p className="text-sm text-muted-gray leading-relaxed">
               Synchub Creative Week isn&apos;t just an annual milestone—it functions as the primary operational showcase 
               for the stable development framework of the Synchub Creative Centre brand ecosystem. 
             </p>
-            <p className="text-sm text-[#b3b3b3] leading-relaxed">
+            <p className="text-sm text-muted-gray leading-relaxed">
               Our ongoing organizational focus supports the acceleration of micro-studios, technological literacy 
               across visual fields, global market distribution networks, and actionable mentorship frameworks for local builders.
             </p>
