@@ -1,15 +1,5 @@
 "use client";
 
-// components/shared/footer.tsx
-//
-// Purely presentational — no data layer, no server actions, no Prisma-backed
-// types — so it lives in components/shared/ alongside header.tsx and
-// wave-bg.tsx, per AGENT.md Section 3 Rule 1 / Section 4.
-//
-// If any part of this ever needs live data (e.g. a real newsletter signup
-// backed by a server action), that piece moves into features/newsletter/
-// at that point — it should not stay here just because it started here.
-
 import Link from "next/link";
 import { useState, type FormEvent, type ComponentType } from "react";
 import { motion, useReducedMotion, type Variants } from "motion/react";
@@ -60,18 +50,17 @@ const FOOTER_COLUMNS: FooterColumn[] = [
     title: "Explore",
     links: [
       { label: "About / Our Story", href: "/about" },
-      { label: "Event Schedule", href: "/schedule" },
-      { label: "Meet the Creatives", href: "/creatives" },
+      { label: "Event Schedule", href: "/events" },
+      { label: "Meet the Creatives", href: "/community" },
       { label: "Gallery", href: "/gallery" },
     ],
   },
   {
     title: "Get involved",
     links: [
-      { label: "Tickets & Registration", href: "/tickets" },
       { label: "Sponsorship Packages", href: "/sponsorship" },
       { label: "Partners Wall", href: "/partners" },
-      { label: "1M Creatives / Support Us", href: "/support-us" },
+      { label: "1M Creatives / Support Us", href: "/contact" },
     ],
   },
   {
@@ -212,8 +201,8 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2.5">
                 <ICON_MAP.phone className="h-4 w-4 shrink-0 text-[#4caf50]" />
-                <a href="tel:+2348172388080" className="transition-colors hover:text-[#f5f5f5]">
-                  +234 817 238 8080
+                <a href="tel:+2348068572544" className="transition-colors hover:text-[#f5f5f5]">
+                  +234 806 857 2544
                 </a>
               </li>
             </ul>

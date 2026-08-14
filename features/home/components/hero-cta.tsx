@@ -8,7 +8,7 @@ export function HeroCta() {
   return (
     <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
       <Link
-        href="/tickets"
+        href="/#events"
         className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-[#4caf50] to-[#1e88e5] px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
       >
         Get tickets

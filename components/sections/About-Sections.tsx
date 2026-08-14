@@ -938,7 +938,7 @@ const SUPPORT_PATHS = [
     title: "For supporters",
     description:
       "Contribute to our mission through donations, sponsorships, or by volunteering your expertise.",
-    href: "/support-us",
+    href: "#",
     cta: "Support the mission",
   },
   {
@@ -954,7 +954,7 @@ const SUPPORT_PATHS = [
     title: "For creatives",
     description:
       "Join our community to access resources, training, mentorship, and opportunities to showcase your talent.",
-    href: "/creatives",
+    href: "/community",
     cta: "Meet the creatives",
   },
 ] satisfies {
@@ -1048,12 +1048,12 @@ function SupportMissionSection() {
               <li className="flex gap-3">
                 <PhoneIcon className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
                 <span>
-                  <a href="tel:+2348172388080" className="hover:text-foreground">
-                    +234 817 238 8080
+                  <a href="tel:+2348068572544" className="hover:text-foreground">
+                    +234 806 857 2544
                   </a>
                   <br />
-                  <a href="tel:+2349083696032" className="hover:text-foreground">
-                    +234 908 369 6032
+                  <a href="tel:+2348163165099" className="hover:text-foreground">
+                    +234 816 316 5099
                   </a>
                 </span>
               </li>

@@ -16,8 +16,8 @@ import {
 
 import { ICON_MAP } from "@/lib/icons";
 
-import { EventHighlightsSection } from "@/components/sections/Event-Highlight";
-import { SponsorshipSection } from "@/components/sections/SponsorshipSection";
+import { EventHighlightsSection } from "@/components/sections/events/Event-Highlight";
+import { SponsorshipSection } from "@/components/sections/sponsorships/SponsorshipSection";
 
 // Client-interactive wrapper component for adding smooth Framer Motion elements 
 // keeping within the Next.js Server Component boundaries by default.
@@ -306,7 +306,7 @@ export default function SynchubCreativeWeekPage() {
             </p>
             <div className="pt-2">
               <Link 
-                href="/support-us" 
+                href="/community" 
                 className="inline-flex items-center gap-2 text-xs font-bold text-[#1e88e5] hover:text-[#4caf50] transition-colors uppercase tracking-wider"
               >
                 Learn About Our Long-Term Ecosystem Mission
@@ -349,11 +349,11 @@ export default function SynchubCreativeWeekPage() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2.5">
                     <Mail className="w-4 h-4 text-[#1e88e5]" />
-                    <a href="mailto:thesynchub@gmail.com" className="hover:underline">thesynchub@gmail.com</a>
+                    <Link href="mailto:thesynchub@gmail.com" className="hover:underline">thesynchub@gmail.com</Link>
                   </div>
                   <div className="flex items-center gap-2.5">
                     <Phone className="w-4 h-4 text-[#4caf50]" />
-                    <span>+234 817 238 8080</span>
+                    <Link href="tel:+2348068572544" className="hover:underline">+234 806 857 2544</Link>
                   </div>
                 </div>
               </div>

@@ -34,7 +34,7 @@ const navLinks = [
   },
   {
     id: 1,
-    text: "About/1Million Creatives",
+    text: "About",
     to: "/about",
   },
   {
@@ -57,6 +57,11 @@ const navLinks = [
     text: "Contact",
     to: "/contact",
   },
+  {
+    id: 6,
+    text: "Our Community",
+    to: "/community"
+  }
 ];
 
 export function Navbar() {

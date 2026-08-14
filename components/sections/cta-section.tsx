@@ -93,7 +93,7 @@ export function CTASection() {
                 asChild
                 className="w-full sm:w-auto font-semibold px-8 py-6 rounded-lg shadow-lg transform transition active:scale-95 bg-gradient-to-r from-[#4caf50] to-[#1e88e5] hover:opacity-95 text-white border-0"
               >
-                <Link href="/tickets">Get Event Tickets</Link>
+                <Link href="/events">Get Event Tickets</Link>
               </Button>
               <Button
                 asChild

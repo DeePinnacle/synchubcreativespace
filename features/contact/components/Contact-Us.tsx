@@ -12,8 +12,8 @@ const CONTACT_DETAILS = [
   {
     key: "phone",
     label: "Phone / WhatsApp",
-    value: "+234 817 238 8080",
-    href: "tel:+2348172388080",
+    value: "+234 806 857 2544",
+    href: "tel:+2348068572544",
   },
   {
     key: "mapPin",

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { SponsorshipForm } from "@/features/sponsorship/components/Sponsorship-Form";
 // Assuming your homepage sponsorship display element is exported from sections
-import { SponsorshipSection as HomeSponsorshipSection } from "@/components/sections/SponsorshipSection";
+import { SponsorshipSection as HomeSponsorshipSection } from "@/components/sections/sponsorships/SponsorshipSection";
 
 export const metadata: Metadata = {
   title: "Sponsor Us | Synchub Creative Week 2026",

@@ -1,4 +1,26 @@
-import { X, ChevronLeft, ChevronRight, Maximize2, CheckCircle2, Info, Mail, MapPin, Phone, ArrowRight, Users, TrendingUp, Target, Award } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Maximize2,
+  CheckCircle2,
+  Info,
+  Mail,
+  MapPin,
+  Phone,
+  ArrowRight,
+  Users,
+  TrendingUp,
+  Target,
+  Award,
+  AlertCircle,
+  Palette,
+  Briefcase,
+  Clapperboard,
+  Cpu,
+  HeartPulse,
+  Trophy,
+} from "lucide-react";
 import type { ComponentType, SVGProps } from "react";
 import { FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 
@@ -16,6 +38,7 @@ export const ICON_MAP: Record<string, AnyIcon> = {
   arrowRight: ArrowRight,
   checkCircle: CheckCircle2,
   info: Info,
+  alertCircle: AlertCircle,
   instagram: FaInstagram,
   xTwitter: FaXTwitter,
   whatsapp: FaWhatsapp,
@@ -23,19 +46,24 @@ export const ICON_MAP: Record<string, AnyIcon> = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   expand: Maximize2,
-    users: Users,
+  users: Users,
   "trending-up": TrendingUp,
   target: Target,
   award: Award,
+  // Event Highlights / Event Detail page category icons (Event-Highlight.tsx)
+  cultural: Palette,
+  business: Briefcase,
+  film: Clapperboard,
+  tech: Cpu,
+  wellness: HeartPulse,
+  awards: Trophy,
 };
 
-// lib/icons.ts (add these keys if not already present)
-// import { Users, TrendingUp, Target, Award, type LucideIcon } from "lucide-react";
-
-// export const ICON_MAP: Record<string, LucideIcon> = {
-//   users: Users,
-//   "trending-up": TrendingUp,
-//   target: Target,
-//   award: Award,
-//   // ...existing keys
-// };
+/** Keys of the event-day category icons above — used to type `EventDayHighlight.icon` in lib/data/events.ts. */
+export type EventIconKey =
+  | "cultural"
+  | "business"
+  | "film"
+  | "tech"
+  | "wellness"
+  | "awards";

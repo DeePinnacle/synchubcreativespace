@@ -1,8 +1,6 @@
 import { Resend } from "resend";
 import type { InquiryType } from "@/features/contact/types";
 
-const resend = new Resend(process.env.EMAIL_PROVIDER_API_KEY);
-
 // Hardcoded testing inbox per Deen's instruction — swap for the real
 // Synchub team address via CONTACT_NOTIFICATION_EMAIL when ready.
 const NOTIFICATION_TO = process.env.CONTACT_NOTIFICATION_EMAIL ?? "officialdeepinnacle@gmail.com";
@@ -21,6 +19,8 @@ export async function sendContactNotification({
   message: string;
   inquiryType: InquiryType;
 }) {
+  const resend = new Resend(process.env.EMAIL_PROVIDER_API_KEY);
+
   await resend.emails.send({
     from: NOTIFICATION_FROM,
     to: NOTIFICATION_TO,

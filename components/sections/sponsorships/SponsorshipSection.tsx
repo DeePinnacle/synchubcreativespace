@@ -1,94 +1,19 @@
 "use client"
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, Info, ArrowRight, X, Building2, ShieldCheck, Award, Users, LucideIcon } from 'lucide-react';
+import { Check, Info, ArrowRight, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { WaveBg } from '../shared/Wave-Bg';
-
-// Define the Sponsorship Tier interface
-interface SponsorshipTier {
-  id: string;
-  name: string;
-  priceNGN: string;
-  priceUSD: string;
-  tagline: string;
-  icon: LucideIcon;
-  color: string;
-  benefits: string[];
-  detailedDescription: string;
-}
-
-const SPONSORSHIP_TIERS: SponsorshipTier[] = [
-  {
-    id: 'headline',
-    name: 'Headline Partner',
-    priceNGN: '₦10,000,000',
-    priceUSD: '$7,320',
-    tagline: "Ultimate brand ownership and top-tier ecosystem influence.",
-    icon: ShieldCheck,
-    color: '#4caf50',
-    benefits: [
-      'Category exclusivity and top-tier visibility',
-      'Headline logo placement across all media platforms',
-      'Full activation booth for all 6 days of the event',
-      'Keynote speaking slot during the Grand Showcase & Awards',
-      '10 VIP access passes with full executive benefits',
-      'Custom targeted influencer campaign and PR distribution'
-    ],
-    detailedDescription: "As the Headline Partner, your brand becomes synonymous with Synchub Creative Week 2026. This tier offers unprecedented brand alignment, category exclusivity, and massive media real estate across all pre-event, live, and post-event touchpoints. Work directly with our production team to craft a custom influencer and media strategy that maximizes your organization's ROI."
-  },
-  {
-    id: 'gold',
-    name: 'Gold Partner',
-    priceNGN: '₦5,000,000',
-    priceUSD: '$3,660',
-    tagline: "High-impact industry positioning and session integration.",
-    icon: Award,
-    color: '#1e88e5',
-    benefits: [
-      'Co-branded sessions, panels, or workshop tracks',
-      'Premium booth access for 4 high-traffic days',
-      'Dedicated press mentions and media highlights',
-      '6 VIP access passes with networking lounge access',
-      'Strategic social media campaign integration'
-    ],
-    detailedDescription: "The Gold Partnership is built for organizations looking to position themselves as key thought leaders. You will have the unique opportunity to co-curate specific panel tracks or workshops matching your industry focus, establishing direct engagement with Abuja's top creative tech talent and decision makers."
-  },
-  {
-    id: 'silver',
-    name: 'Silver Partner',
-    priceNGN: '₦3,000,000',
-    priceUSD: '$1,869',
-    tagline: "Excellent brand presence and physical footprint.",
-    icon: Building2,
-    color: '#a855f7',
-    benefits: [
-      'Shared brand visibility across physical & digital collateral',
-      'Dedicated exhibition booth for 2 key event days',
-      '3 VIP event passes for your core executive team',
-      'Official acknowledgment in event communications'
-    ],
-    detailedDescription: "Silver Partners gain a solid, tangible presence throughout the 6-day summit. With an exhibition booth on high-traffic days, your team can interact directly with hundreds of prospective clients, hires, and creative collaborators."
-  },
-  {
-    id: 'community',
-    name: 'Community Supporter',
-    priceNGN: '₦1,000,000',
-    priceUSD: '$732',
-    tagline: "Grassroots support for Africa's emerging creative powerhouse.",
-    icon: Users,
-    color: '#06b6d4',
-    benefits: [
-      'Logo placement on digital flyers and marketing assets',
-      'Official brand mention in post-event video website ecosystem',
-      'Exclusive invitation to the private Sponsor Mixer event'
-    ],
-    detailedDescription: "Perfect for fast-growing startups, creative agencies, and regional brands looking to support the '1 Million Creatives' mission. This tier gives you clean digital visibility and vital networking access during our high-level closed-door networking sessions."
-  }
-];
+import { WaveBg } from '../../shared/Wave-Bg';
+import { SponsorshipTier, SPONSORSHIP_TIERS } from "@/lib/data/sponsorship-tiers";
 
 export function SponsorshipSection() {
+  const router = useRouter();
   const [selectedTier, setSelectedTier] = useState<SponsorshipTier | null>(null);
+  
+  function goToCheckout(tierId: string) {
+    router.push(`/sponsorship/checkout?tier=${tierId}`);
+  }
 
   return (
     <section className="relative w-full text-muted-gray bg-off-white py-20 px-4 md:px-8 overflow-hidden select-none">
@@ -192,7 +117,9 @@ export function SponsorshipSection() {
                     View Package Details
                   </Button>
                   
-                  <Button className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md">
+                  <Button className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+                    onClick={() => goToCheckout(tier.id)}
+                  >
                     Select This Tier
                     <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
                   </Button>
@@ -293,7 +220,9 @@ export function SponsorshipSection() {
                   >
                     Close Window
                   </Button>
-                  <Button className="py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-extrabold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-2 transition-all shadow-md">
+                  <Button className="py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-extrabold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-2 transition-all shadow-md"
+                    onClick={() => goToCheckout(selectedTier.id)}
+                  >
                     Secure This Tier
                     <ArrowRight className="w-4 h-4 stroke-[3]" />
                   </Button>
