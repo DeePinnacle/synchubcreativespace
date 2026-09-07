@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useCartStore, selectItemCount, selectSubtotal } from "@/lib/stores/cart-store";
+import { useCreateTicketOrder } from "@/features/events/hooks/use-create-ticket-order";
 
 // Rule 4: static ICON_MAP at module level, never inline.
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -91,13 +92,37 @@ export function CheckoutSections() {
     "CARD",
   );
 
-  // TODO: replace with features/tickets/actions/create-ticket-order.ts
-  // (Section 7, Ticket purchase flow) once the data layer exists. That
-  // action should read useCartStore().items + this form state, initialize
-  // payment via lib/payments/{paystack,flutterwave}.ts, and only call
-  // clearCart() after a verified webhook flips the order to PAID (Rule 6).
+  const createOrder = useCreateTicketOrder();
+
+  // Note: clearCart() intentionally does NOT happen here — per Rule 6, the
+  // cart only clears once the order is confirmed PAID (e.g. on the
+  // /tickets/success page reading a webhook-confirmed status), not on this
+  // client-side redirect.
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+
+    createOrder.mutate(
+      {
+        buyerName,
+        buyerEmail,
+        buyerPhone,
+        paymentMethod,
+        items: items.map(({ day, date, title, quantity, price }) => ({
+          day,
+          date,
+          title,
+          quantity,
+          price,
+        })),
+      },
+      {
+        onSuccess: (data) => {
+          // Full page navigation — Paystack's hosted checkout is a
+          // different origin, so this can't be router.push().
+          window.location.href = data.authorizationUrl;
+        },
+      },
+    );
   }
 
   if (items.length === 0) {
@@ -271,10 +296,21 @@ export function CheckoutSections() {
 
             <button
               type="submit"
-              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_-10px_rgba(30,136,229,0.5)] transition-transform hover:scale-[1.01] active:scale-[0.99] sm:w-auto"
+              disabled={createOrder.isPending}
+              className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_-10px_rgba(30,136,229,0.5)] transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 sm:w-auto"
             >
-              Pay {currency.format(subtotal)}
+              {createOrder.isPending
+                ? "Redirecting to payment…"
+                : `Pay ${currency.format(subtotal)}`}
             </button>
+
+            {createOrder.isError && (
+              <p className="mt-3 text-xs text-red-500">
+                {createOrder.error instanceof Error
+                  ? createOrder.error.message
+                  : "Something went wrong. Please try again."}
+              </p>
+            )}
 
             <p className="mt-3 flex items-center gap-1.5 text-xs text-slate-400">
               <ShieldCheck className="h-3.5 w-3.5" />

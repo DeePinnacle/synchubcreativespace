@@ -29,6 +29,7 @@ import {
   SPONSORSHIP_PAYMENT_METHODS,
   type SponsorshipCheckoutFormValues,
 } from "@/components/sections/sponsorships/schema/sponsorship-checkout-schema";
+import { useCreateSponsorshipOrder } from "@/features/sponsorship/hooks/use-create-sponsorship-order";
 
 // Only Headline Partner is scarcity-limited per the tier copy ("Category
 // exclusivity"). Derived here rather than added to the shared SponsorshipTier
@@ -91,6 +92,7 @@ const PAYMENT_METHOD_HELP: Record<(typeof PAYMENT_METHODS)[number]["id"], string
 
 export function SponsorshipCheckoutSections({ tierId }: Readonly<{ tierId: string }>) {
   const reduceMotion = useReducedMotion();
+  const createSponsorshipOrder = useCreateSponsorshipOrder();
 
   const form = useForm<SponsorshipCheckoutFormValues>({
     resolver: zodResolver(sponsorshipCheckoutSchema),
@@ -121,28 +123,32 @@ export function SponsorshipCheckoutSections({ tierId }: Readonly<{ tierId: strin
 
   const TierIcon = tier.icon;
   const exclusive = isExclusiveTier(tier.id);
+  // Captured as a plain string here, outside the onSubmit closure below —
+  // TypeScript's narrowing from the `if (!tier)` guard above doesn't carry
+  // across a closure boundary, so referencing `tier.id` directly inside
+  // onSubmit would still show as "possibly undefined" even though it can't
+  // actually be. Capturing it into its own already-typed const sidesteps
+  // that entirely.
+  const resolvedTierId = tier.id;
   const paymentMethod = form.watch("paymentMethod");
   const companyLogoFiles = form.watch("companyLogo");
   const companyLogo = companyLogoFiles?.[0];
 
-  // TODO: replace with features/sponsorship/actions/create-sponsorship-order.ts
-  // (Section 7, Sponsorship flow) once the data layer exists. That action
-  // should create/find a Sponsor from `values`, create a SponsorshipOrder for
-  // `tier.id`, upload `values.companyLogo[0]` and set Sponsor.logoUrl, then
-  // initialize payment via lib/payments/{paystack,flutterwave}.ts. For
-  // exclusive tiers (isExclusiveTier — currently just Headline), the action
-  // must first check for an existing PAID SponsorshipOrder on this tierId and
-  // reject before initializing payment (Section 7 exclusivity — this is the
-  // race-condition guard, not just a client-side notice below). Also note:
-  // priceNGN/priceUSD are display strings on this tier data — the action
-  // needs a numeric amount in kobo for the PSP call, so parse from priceNGN
-  // or add a numeric field. showOnPartnersWall/PartnerLogo only flip after a
-  // verified webhook, per Rule 6 — never from this client submit. Consider
-  // wrapping this in a TanStack Query useMutation hook, matching the contact
-  // form's pattern, once the server action exists.
-  function onSubmit(values: SponsorshipCheckoutFormValues) {
-    // eslint-disable-next-line no-console -- placeholder until the server action lands
-    console.log("Sponsorship checkout submit (not yet wired):", values);
+  // Logo upload isn't sent here — companyLogo stays client-only until
+  // storage is wired (see the ASSUMPTION note in
+  // sponsorship-checkout-schema.ts and create-sponsorship-order.ts).
+  // showOnPartnersWall/PartnerLogo only flip after a verified webhook, per
+  // Rule 6 — this submit only ever gets the user to Paystack's hosted page.
+  async function onSubmit(values: SponsorshipCheckoutFormValues) {
+    const { authorizationUrl } = await createSponsorshipOrder.mutateAsync({
+      tierId: resolvedTierId,
+      companyName: values.companyName,
+      contactPerson: values.contactPerson,
+      companyEmail: values.companyEmail,
+      paymentMethod: values.paymentMethod,
+    });
+
+    window.location.href = authorizationUrl;
   }
 
   return (
@@ -362,11 +368,19 @@ export function SponsorshipCheckoutSections({ tierId }: Readonly<{ tierId: strin
 
             <button
               type="submit"
-              disabled={form.formState.isSubmitting}
+              disabled={form.formState.isSubmitting || createSponsorshipOrder.isPending}
               className="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-[0_10px_28px_-10px_rgba(30,136,229,0.5)] transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
             >
-              Pay {tier.priceNGN}
+              {createSponsorshipOrder.isPending ? "Redirecting to payment…" : `Pay ${tier.priceNGN}`}
             </button>
+
+            {createSponsorshipOrder.isError && (
+              <p className="mt-3 text-xs font-medium text-red-600">
+                {createSponsorshipOrder.error instanceof Error
+                  ? createSponsorshipOrder.error.message
+                  : "Something went wrong starting your payment. Please try again."}
+              </p>
+            )}
 
             <p className="mt-3 flex items-center gap-1.5 text-xs text-slate-400">
               <ShieldCheck className="h-3.5 w-3.5" />

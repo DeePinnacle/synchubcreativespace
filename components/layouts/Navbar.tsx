@@ -39,7 +39,7 @@ const navLinks = [
   },
   {
     id: 2,
-    text: "Events",
+    text: "Creative-week",
     to: "/events",
   },
   {

@@ -1,22 +1,23 @@
 {
   "tailwindCSS.suggestions": true,
+
   "tailwindCSS.classFunctions": [
     "cn",
     "clsx",
     "cva",
     "tw"
   ],
+
   "editor.quickSuggestions": {
     "other": "on",
     "comments": "off",
     "strings": "on"
   },
+
   "tailwindCSS.includeLanguages": {
     "typescript": "javascript",
     "typescriptreact": "javascript"
   },
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
+
   "tailwindCSS.emmetCompletions": true
 }

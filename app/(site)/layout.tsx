@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk, Sora, Inter, Italianno } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk, Sora, Inter, Italianno, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { SiteChrome } from "@/components/layouts/SiteChrome";
 import Footer from "@/components/layouts/Footer";
@@ -8,6 +8,11 @@ import { QueryProvider } from "@/components/providers/query-provider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing",
+  subsets: ["latin"]
 });
 
 const geistMono = Geist_Mono({
@@ -176,7 +181,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${italianno.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${sora.variable} ${inter.variable} ${italianno.variable} ${dancingScript.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
