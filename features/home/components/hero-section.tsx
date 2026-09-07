@@ -45,7 +45,7 @@ export function HeroSection() {
           <HeroRevealItem>
             <h1 className="mx-auto max-w-3xl text-4xl font-sora font-extrabold leading-[1.12] tracking-tight text-white sm:text-5xl md:text-7xl">
               <span className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Synchub Creative Centerrrrr
+                Synchub Creative Center
               </span>
               <p className='text-2xl'>Presents</p>
               Creative Week
