@@ -249,7 +249,7 @@ export function VendorSections() {
               className="aspect-[3/4] w-full"
             />
             <VendorPhoto
-              src="/cultural-day.jpeg"
+              src="/business.jpeg"
               alt="Attendees interacting with vendor"
               className="aspect-[3/4] w-full mt-8"
             />
@@ -317,16 +317,18 @@ export function VendorSections() {
               {
                 alt: "Fashion vendor display",
                 caption: "Fashion & Style Stall",
+                image: "Gallery-7.jpeg"
               },
-              { alt: "Art display stall", caption: "Art & Craft Booth" },
+              { alt: "Art display stall", caption: "Art & Craft Booth", image: "Gallery-2.jpeg" },
               {
                 alt: "Food stall experience",
                 caption: "Food & Beverage Corner",
+                image: "Gallery-13.jpeg"
               },
             ].map((photo, index) => (
               <motion.div key={photo.alt} {...motionProps(index * 0.05)}>
                 <VendorPhoto
-                  src="/cultural-day.jpeg"
+                  src={`/${photo.image}`}
                   alt={photo.alt}
                   caption={photo.caption}
                   className="aspect-[4/5] w-full"
@@ -388,7 +390,7 @@ export function VendorSections() {
             <Button
               asChild
               size="lg"
-              className="rounded-full bg-gradient-to-r from-[#4caf50] to-[#1e88e5] px-8 text-white transition-transform hover:scale-[1.02]"
+              className="h-14 rounded-full bg-gradient-to-r from-[#4caf50] to-[#1e88e5] px-8 text-white transition-transform hover:scale-[1.02]"
             >
               <Link href="/vendor/register">Register as a Vendor</Link>
             </Button>

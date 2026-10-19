@@ -64,7 +64,9 @@ export const ModelName = {
   SponsorshipOrder: 'SponsorshipOrder',
   Payment: 'Payment',
   PartnerLogo: 'PartnerLogo',
-  ContactMessage: 'ContactMessage'
+  ContactMessage: 'ContactMessage',
+  Registration: 'Registration',
+  VendorApplication: 'VendorApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -266,6 +268,38 @@ export const ContactMessageScalarFieldEnum = {
 } as const
 
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
+
+
+export const RegistrationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  heardFrom: 'heardFrom',
+  accessibilityNeeds: 'accessibilityNeeds',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RegistrationScalarFieldEnum = (typeof RegistrationScalarFieldEnum)[keyof typeof RegistrationScalarFieldEnum]
+
+
+export const VendorApplicationScalarFieldEnum = {
+  id: 'id',
+  businessName: 'businessName',
+  contactName: 'contactName',
+  phone: 'phone',
+  email: 'email',
+  category: 'category',
+  description: 'description',
+  website: 'website',
+  interests: 'interests',
+  eventYear: 'eventYear',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorApplicationScalarFieldEnum = (typeof VendorApplicationScalarFieldEnum)[keyof typeof VendorApplicationScalarFieldEnum]
 
 
 export const SortOrder = {

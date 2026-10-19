@@ -382,6 +382,40 @@ export type EnumContactInquiryTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumContactInquiryTypeFilter<$PrismaModel>
 }
 
+export type EnumRegistrationSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.RegistrationSource | Prisma.EnumRegistrationSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel> | $Enums.RegistrationSource
+}
+
+export type EnumRegistrationSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RegistrationSource | Prisma.EnumRegistrationSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRegistrationSourceWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel>
+}
+
+export type EnumVendorCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.VendorCategory | Prisma.EnumVendorCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel> | $Enums.VendorCategory
+}
+
+export type EnumVendorCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VendorCategory | Prisma.EnumVendorCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVendorCategoryWithAggregatesFilter<$PrismaModel> | $Enums.VendorCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -734,6 +768,40 @@ export type NestedEnumContactInquiryTypeWithAggregatesFilter<$PrismaModel = neve
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumContactInquiryTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumContactInquiryTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumRegistrationSourceFilter<$PrismaModel = never> = {
+  equals?: $Enums.RegistrationSource | Prisma.EnumRegistrationSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel> | $Enums.RegistrationSource
+}
+
+export type NestedEnumRegistrationSourceWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RegistrationSource | Prisma.EnumRegistrationSourceFieldRefInput<$PrismaModel>
+  in?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  notIn?: $Enums.RegistrationSource[] | Prisma.ListEnumRegistrationSourceFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumRegistrationSourceWithAggregatesFilter<$PrismaModel> | $Enums.RegistrationSource
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRegistrationSourceFilter<$PrismaModel>
+}
+
+export type NestedEnumVendorCategoryFilter<$PrismaModel = never> = {
+  equals?: $Enums.VendorCategory | Prisma.EnumVendorCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel> | $Enums.VendorCategory
+}
+
+export type NestedEnumVendorCategoryWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.VendorCategory | Prisma.EnumVendorCategoryFieldRefInput<$PrismaModel>
+  in?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  notIn?: $Enums.VendorCategory[] | Prisma.ListEnumVendorCategoryFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumVendorCategoryWithAggregatesFilter<$PrismaModel> | $Enums.VendorCategory
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumVendorCategoryFilter<$PrismaModel>
 }
 
 

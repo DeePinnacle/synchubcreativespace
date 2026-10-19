@@ -191,6 +191,8 @@ export type EventDayWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
   sessions?: Prisma.ScheduleSessionListRelationFilter
+  registrations?: Prisma.RegistrationListRelationFilter
+  vendorApplications?: Prisma.VendorApplicationListRelationFilter
 }
 
 export type EventDayOrderByWithRelationInput = {
@@ -201,6 +203,8 @@ export type EventDayOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   sessions?: Prisma.ScheduleSessionOrderByRelationAggregateInput
+  registrations?: Prisma.RegistrationOrderByRelationAggregateInput
+  vendorApplications?: Prisma.VendorApplicationOrderByRelationAggregateInput
 }
 
 export type EventDayWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +218,8 @@ export type EventDayWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
   sessions?: Prisma.ScheduleSessionListRelationFilter
+  registrations?: Prisma.RegistrationListRelationFilter
+  vendorApplications?: Prisma.VendorApplicationListRelationFilter
 }, "id">
 
 export type EventDayOrderByWithAggregationInput = {
@@ -248,6 +254,8 @@ export type EventDayCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.ScheduleSessionCreateNestedManyWithoutEventDayInput
+  registrations?: Prisma.RegistrationCreateNestedManyWithoutDaysInput
+  vendorApplications?: Prisma.VendorApplicationCreateNestedManyWithoutDaysInput
 }
 
 export type EventDayUncheckedCreateInput = {
@@ -258,6 +266,8 @@ export type EventDayUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   sessions?: Prisma.ScheduleSessionUncheckedCreateNestedManyWithoutEventDayInput
+  registrations?: Prisma.RegistrationUncheckedCreateNestedManyWithoutDaysInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedCreateNestedManyWithoutDaysInput
 }
 
 export type EventDayUpdateInput = {
@@ -268,6 +278,8 @@ export type EventDayUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.ScheduleSessionUpdateManyWithoutEventDayNestedInput
+  registrations?: Prisma.RegistrationUpdateManyWithoutDaysNestedInput
+  vendorApplications?: Prisma.VendorApplicationUpdateManyWithoutDaysNestedInput
 }
 
 export type EventDayUncheckedUpdateInput = {
@@ -278,6 +290,8 @@ export type EventDayUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   sessions?: Prisma.ScheduleSessionUncheckedUpdateManyWithoutEventDayNestedInput
+  registrations?: Prisma.RegistrationUncheckedUpdateManyWithoutDaysNestedInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedUpdateManyWithoutDaysNestedInput
 }
 
 export type EventDayCreateManyInput = {
@@ -339,6 +353,16 @@ export type EventDayScalarRelationFilter = {
   isNot?: Prisma.EventDayWhereInput
 }
 
+export type EventDayListRelationFilter = {
+  every?: Prisma.EventDayWhereInput
+  some?: Prisma.EventDayWhereInput
+  none?: Prisma.EventDayWhereInput
+}
+
+export type EventDayOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
+}
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -357,6 +381,82 @@ export type EventDayUpdateOneRequiredWithoutSessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.EventDayUpdateToOneWithWhereWithoutSessionsInput, Prisma.EventDayUpdateWithoutSessionsInput>, Prisma.EventDayUncheckedUpdateWithoutSessionsInput>
 }
 
+export type EventDayCreateNestedManyWithoutRegistrationsInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput> | Prisma.EventDayCreateWithoutRegistrationsInput[] | Prisma.EventDayUncheckedCreateWithoutRegistrationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutRegistrationsInput | Prisma.EventDayCreateOrConnectWithoutRegistrationsInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+}
+
+export type EventDayUncheckedCreateNestedManyWithoutRegistrationsInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput> | Prisma.EventDayCreateWithoutRegistrationsInput[] | Prisma.EventDayUncheckedCreateWithoutRegistrationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutRegistrationsInput | Prisma.EventDayCreateOrConnectWithoutRegistrationsInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+}
+
+export type EventDayUpdateManyWithoutRegistrationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput> | Prisma.EventDayCreateWithoutRegistrationsInput[] | Prisma.EventDayUncheckedCreateWithoutRegistrationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutRegistrationsInput | Prisma.EventDayCreateOrConnectWithoutRegistrationsInput[]
+  upsert?: Prisma.EventDayUpsertWithWhereUniqueWithoutRegistrationsInput | Prisma.EventDayUpsertWithWhereUniqueWithoutRegistrationsInput[]
+  set?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  disconnect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  delete?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  update?: Prisma.EventDayUpdateWithWhereUniqueWithoutRegistrationsInput | Prisma.EventDayUpdateWithWhereUniqueWithoutRegistrationsInput[]
+  updateMany?: Prisma.EventDayUpdateManyWithWhereWithoutRegistrationsInput | Prisma.EventDayUpdateManyWithWhereWithoutRegistrationsInput[]
+  deleteMany?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+}
+
+export type EventDayUncheckedUpdateManyWithoutRegistrationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput> | Prisma.EventDayCreateWithoutRegistrationsInput[] | Prisma.EventDayUncheckedCreateWithoutRegistrationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutRegistrationsInput | Prisma.EventDayCreateOrConnectWithoutRegistrationsInput[]
+  upsert?: Prisma.EventDayUpsertWithWhereUniqueWithoutRegistrationsInput | Prisma.EventDayUpsertWithWhereUniqueWithoutRegistrationsInput[]
+  set?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  disconnect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  delete?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  update?: Prisma.EventDayUpdateWithWhereUniqueWithoutRegistrationsInput | Prisma.EventDayUpdateWithWhereUniqueWithoutRegistrationsInput[]
+  updateMany?: Prisma.EventDayUpdateManyWithWhereWithoutRegistrationsInput | Prisma.EventDayUpdateManyWithWhereWithoutRegistrationsInput[]
+  deleteMany?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+}
+
+export type EventDayCreateNestedManyWithoutVendorApplicationsInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput> | Prisma.EventDayCreateWithoutVendorApplicationsInput[] | Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput | Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+}
+
+export type EventDayUncheckedCreateNestedManyWithoutVendorApplicationsInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput> | Prisma.EventDayCreateWithoutVendorApplicationsInput[] | Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput | Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+}
+
+export type EventDayUpdateManyWithoutVendorApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput> | Prisma.EventDayCreateWithoutVendorApplicationsInput[] | Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput | Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput[]
+  upsert?: Prisma.EventDayUpsertWithWhereUniqueWithoutVendorApplicationsInput | Prisma.EventDayUpsertWithWhereUniqueWithoutVendorApplicationsInput[]
+  set?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  disconnect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  delete?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  update?: Prisma.EventDayUpdateWithWhereUniqueWithoutVendorApplicationsInput | Prisma.EventDayUpdateWithWhereUniqueWithoutVendorApplicationsInput[]
+  updateMany?: Prisma.EventDayUpdateManyWithWhereWithoutVendorApplicationsInput | Prisma.EventDayUpdateManyWithWhereWithoutVendorApplicationsInput[]
+  deleteMany?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+}
+
+export type EventDayUncheckedUpdateManyWithoutVendorApplicationsNestedInput = {
+  create?: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput> | Prisma.EventDayCreateWithoutVendorApplicationsInput[] | Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput[]
+  connectOrCreate?: Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput | Prisma.EventDayCreateOrConnectWithoutVendorApplicationsInput[]
+  upsert?: Prisma.EventDayUpsertWithWhereUniqueWithoutVendorApplicationsInput | Prisma.EventDayUpsertWithWhereUniqueWithoutVendorApplicationsInput[]
+  set?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  disconnect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  delete?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  connect?: Prisma.EventDayWhereUniqueInput | Prisma.EventDayWhereUniqueInput[]
+  update?: Prisma.EventDayUpdateWithWhereUniqueWithoutVendorApplicationsInput | Prisma.EventDayUpdateWithWhereUniqueWithoutVendorApplicationsInput[]
+  updateMany?: Prisma.EventDayUpdateManyWithWhereWithoutVendorApplicationsInput | Prisma.EventDayUpdateManyWithWhereWithoutVendorApplicationsInput[]
+  deleteMany?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+}
+
 export type EventDayCreateWithoutSessionsInput = {
   id?: string
   date: Date | string
@@ -364,6 +464,8 @@ export type EventDayCreateWithoutSessionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  registrations?: Prisma.RegistrationCreateNestedManyWithoutDaysInput
+  vendorApplications?: Prisma.VendorApplicationCreateNestedManyWithoutDaysInput
 }
 
 export type EventDayUncheckedCreateWithoutSessionsInput = {
@@ -373,6 +475,8 @@ export type EventDayUncheckedCreateWithoutSessionsInput = {
   description?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  registrations?: Prisma.RegistrationUncheckedCreateNestedManyWithoutDaysInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedCreateNestedManyWithoutDaysInput
 }
 
 export type EventDayCreateOrConnectWithoutSessionsInput = {
@@ -398,9 +502,173 @@ export type EventDayUpdateWithoutSessionsInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrations?: Prisma.RegistrationUpdateManyWithoutDaysNestedInput
+  vendorApplications?: Prisma.VendorApplicationUpdateManyWithoutDaysNestedInput
 }
 
 export type EventDayUncheckedUpdateWithoutSessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  registrations?: Prisma.RegistrationUncheckedUpdateManyWithoutDaysNestedInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedUpdateManyWithoutDaysNestedInput
+}
+
+export type EventDayCreateWithoutRegistrationsInput = {
+  id?: string
+  date: Date | string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.ScheduleSessionCreateNestedManyWithoutEventDayInput
+  vendorApplications?: Prisma.VendorApplicationCreateNestedManyWithoutDaysInput
+}
+
+export type EventDayUncheckedCreateWithoutRegistrationsInput = {
+  id?: string
+  date: Date | string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.ScheduleSessionUncheckedCreateNestedManyWithoutEventDayInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedCreateNestedManyWithoutDaysInput
+}
+
+export type EventDayCreateOrConnectWithoutRegistrationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput>
+}
+
+export type EventDayUpsertWithWhereUniqueWithoutRegistrationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  update: Prisma.XOR<Prisma.EventDayUpdateWithoutRegistrationsInput, Prisma.EventDayUncheckedUpdateWithoutRegistrationsInput>
+  create: Prisma.XOR<Prisma.EventDayCreateWithoutRegistrationsInput, Prisma.EventDayUncheckedCreateWithoutRegistrationsInput>
+}
+
+export type EventDayUpdateWithWhereUniqueWithoutRegistrationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  data: Prisma.XOR<Prisma.EventDayUpdateWithoutRegistrationsInput, Prisma.EventDayUncheckedUpdateWithoutRegistrationsInput>
+}
+
+export type EventDayUpdateManyWithWhereWithoutRegistrationsInput = {
+  where: Prisma.EventDayScalarWhereInput
+  data: Prisma.XOR<Prisma.EventDayUpdateManyMutationInput, Prisma.EventDayUncheckedUpdateManyWithoutRegistrationsInput>
+}
+
+export type EventDayScalarWhereInput = {
+  AND?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+  OR?: Prisma.EventDayScalarWhereInput[]
+  NOT?: Prisma.EventDayScalarWhereInput | Prisma.EventDayScalarWhereInput[]
+  id?: Prisma.StringFilter<"EventDay"> | string
+  date?: Prisma.DateTimeFilter<"EventDay"> | Date | string
+  title?: Prisma.StringFilter<"EventDay"> | string
+  description?: Prisma.StringNullableFilter<"EventDay"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"EventDay"> | Date | string
+}
+
+export type EventDayCreateWithoutVendorApplicationsInput = {
+  id?: string
+  date: Date | string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.ScheduleSessionCreateNestedManyWithoutEventDayInput
+  registrations?: Prisma.RegistrationCreateNestedManyWithoutDaysInput
+}
+
+export type EventDayUncheckedCreateWithoutVendorApplicationsInput = {
+  id?: string
+  date: Date | string
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  sessions?: Prisma.ScheduleSessionUncheckedCreateNestedManyWithoutEventDayInput
+  registrations?: Prisma.RegistrationUncheckedCreateNestedManyWithoutDaysInput
+}
+
+export type EventDayCreateOrConnectWithoutVendorApplicationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  create: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput>
+}
+
+export type EventDayUpsertWithWhereUniqueWithoutVendorApplicationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  update: Prisma.XOR<Prisma.EventDayUpdateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedUpdateWithoutVendorApplicationsInput>
+  create: Prisma.XOR<Prisma.EventDayCreateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedCreateWithoutVendorApplicationsInput>
+}
+
+export type EventDayUpdateWithWhereUniqueWithoutVendorApplicationsInput = {
+  where: Prisma.EventDayWhereUniqueInput
+  data: Prisma.XOR<Prisma.EventDayUpdateWithoutVendorApplicationsInput, Prisma.EventDayUncheckedUpdateWithoutVendorApplicationsInput>
+}
+
+export type EventDayUpdateManyWithWhereWithoutVendorApplicationsInput = {
+  where: Prisma.EventDayScalarWhereInput
+  data: Prisma.XOR<Prisma.EventDayUpdateManyMutationInput, Prisma.EventDayUncheckedUpdateManyWithoutVendorApplicationsInput>
+}
+
+export type EventDayUpdateWithoutRegistrationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.ScheduleSessionUpdateManyWithoutEventDayNestedInput
+  vendorApplications?: Prisma.VendorApplicationUpdateManyWithoutDaysNestedInput
+}
+
+export type EventDayUncheckedUpdateWithoutRegistrationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.ScheduleSessionUncheckedUpdateManyWithoutEventDayNestedInput
+  vendorApplications?: Prisma.VendorApplicationUncheckedUpdateManyWithoutDaysNestedInput
+}
+
+export type EventDayUncheckedUpdateManyWithoutRegistrationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type EventDayUpdateWithoutVendorApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.ScheduleSessionUpdateManyWithoutEventDayNestedInput
+  registrations?: Prisma.RegistrationUpdateManyWithoutDaysNestedInput
+}
+
+export type EventDayUncheckedUpdateWithoutVendorApplicationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  sessions?: Prisma.ScheduleSessionUncheckedUpdateManyWithoutEventDayNestedInput
+  registrations?: Prisma.RegistrationUncheckedUpdateManyWithoutDaysNestedInput
+}
+
+export type EventDayUncheckedUpdateManyWithoutVendorApplicationsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
@@ -416,10 +684,14 @@ export type EventDayUncheckedUpdateWithoutSessionsInput = {
 
 export type EventDayCountOutputType = {
   sessions: number
+  registrations: number
+  vendorApplications: number
 }
 
 export type EventDayCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | EventDayCountOutputTypeCountSessionsArgs
+  registrations?: boolean | EventDayCountOutputTypeCountRegistrationsArgs
+  vendorApplications?: boolean | EventDayCountOutputTypeCountVendorApplicationsArgs
 }
 
 /**
@@ -439,6 +711,20 @@ export type EventDayCountOutputTypeCountSessionsArgs<ExtArgs extends runtime.Typ
   where?: Prisma.ScheduleSessionWhereInput
 }
 
+/**
+ * EventDayCountOutputType without action
+ */
+export type EventDayCountOutputTypeCountRegistrationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RegistrationWhereInput
+}
+
+/**
+ * EventDayCountOutputType without action
+ */
+export type EventDayCountOutputTypeCountVendorApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VendorApplicationWhereInput
+}
+
 
 export type EventDaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -448,6 +734,8 @@ export type EventDaySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   sessions?: boolean | Prisma.EventDay$sessionsArgs<ExtArgs>
+  registrations?: boolean | Prisma.EventDay$registrationsArgs<ExtArgs>
+  vendorApplications?: boolean | Prisma.EventDay$vendorApplicationsArgs<ExtArgs>
   _count?: boolean | Prisma.EventDayCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["eventDay"]>
 
@@ -481,6 +769,8 @@ export type EventDaySelectScalar = {
 export type EventDayOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "date" | "title" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["eventDay"]>
 export type EventDayInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   sessions?: boolean | Prisma.EventDay$sessionsArgs<ExtArgs>
+  registrations?: boolean | Prisma.EventDay$registrationsArgs<ExtArgs>
+  vendorApplications?: boolean | Prisma.EventDay$vendorApplicationsArgs<ExtArgs>
   _count?: boolean | Prisma.EventDayCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type EventDayIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -490,6 +780,8 @@ export type $EventDayPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "EventDay"
   objects: {
     sessions: Prisma.$ScheduleSessionPayload<ExtArgs>[]
+    registrations: Prisma.$RegistrationPayload<ExtArgs>[]
+    vendorApplications: Prisma.$VendorApplicationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -893,6 +1185,8 @@ readonly fields: EventDayFieldRefs;
 export interface Prisma__EventDayClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   sessions<T extends Prisma.EventDay$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDay$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ScheduleSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  registrations<T extends Prisma.EventDay$registrationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDay$registrationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RegistrationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vendorApplications<T extends Prisma.EventDay$vendorApplicationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.EventDay$vendorApplicationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorApplicationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1342,6 +1636,54 @@ export type EventDay$sessionsArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.ScheduleSessionScalarFieldEnum | Prisma.ScheduleSessionScalarFieldEnum[]
+}
+
+/**
+ * EventDay.registrations
+ */
+export type EventDay$registrationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Registration
+   */
+  select?: Prisma.RegistrationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Registration
+   */
+  omit?: Prisma.RegistrationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RegistrationInclude<ExtArgs> | null
+  where?: Prisma.RegistrationWhereInput
+  orderBy?: Prisma.RegistrationOrderByWithRelationInput | Prisma.RegistrationOrderByWithRelationInput[]
+  cursor?: Prisma.RegistrationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RegistrationScalarFieldEnum | Prisma.RegistrationScalarFieldEnum[]
+}
+
+/**
+ * EventDay.vendorApplications
+ */
+export type EventDay$vendorApplicationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorApplication
+   */
+  select?: Prisma.VendorApplicationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorApplication
+   */
+  omit?: Prisma.VendorApplicationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorApplicationInclude<ExtArgs> | null
+  where?: Prisma.VendorApplicationWhereInput
+  orderBy?: Prisma.VendorApplicationOrderByWithRelationInput | Prisma.VendorApplicationOrderByWithRelationInput[]
+  cursor?: Prisma.VendorApplicationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VendorApplicationScalarFieldEnum | Prisma.VendorApplicationScalarFieldEnum[]
 }
 
 /**

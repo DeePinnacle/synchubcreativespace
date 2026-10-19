@@ -87,3 +87,13 @@ export type PartnerLogo = Prisma.PartnerLogoModel
  * 
  */
 export type ContactMessage = Prisma.ContactMessageModel
+/**
+ * Model Registration
+ * 
+ */
+export type Registration = Prisma.RegistrationModel
+/**
+ * Model VendorApplication
+ * 
+ */
+export type VendorApplication = Prisma.VendorApplicationModel

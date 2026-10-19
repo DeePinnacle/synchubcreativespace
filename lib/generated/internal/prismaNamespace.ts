@@ -410,7 +410,9 @@ export const ModelName = {
   SponsorshipOrder: 'SponsorshipOrder',
   Payment: 'Payment',
   PartnerLogo: 'PartnerLogo',
-  ContactMessage: 'ContactMessage'
+  ContactMessage: 'ContactMessage',
+  Registration: 'Registration',
+  VendorApplication: 'VendorApplication'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -426,7 +428,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "adminUser" | "eventDay" | "scheduleSession" | "speaker" | "galleryImage" | "ticket" | "ticketOrder" | "attendee" | "sponsorshipTier" | "sponsor" | "sponsorshipOrder" | "payment" | "partnerLogo" | "contactMessage"
+    modelProps: "adminUser" | "eventDay" | "scheduleSession" | "speaker" | "galleryImage" | "ticket" | "ticketOrder" | "attendee" | "sponsorshipTier" | "sponsor" | "sponsorshipOrder" | "payment" | "partnerLogo" | "contactMessage" | "registration" | "vendorApplication"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1466,6 +1468,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Registration: {
+      payload: Prisma.$RegistrationPayload<ExtArgs>
+      fields: Prisma.RegistrationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RegistrationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RegistrationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        findFirst: {
+          args: Prisma.RegistrationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RegistrationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        findMany: {
+          args: Prisma.RegistrationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>[]
+        }
+        create: {
+          args: Prisma.RegistrationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        createMany: {
+          args: Prisma.RegistrationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RegistrationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>[]
+        }
+        delete: {
+          args: Prisma.RegistrationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        update: {
+          args: Prisma.RegistrationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        deleteMany: {
+          args: Prisma.RegistrationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RegistrationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RegistrationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>[]
+        }
+        upsert: {
+          args: Prisma.RegistrationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RegistrationPayload>
+        }
+        aggregate: {
+          args: Prisma.RegistrationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRegistration>
+        }
+        groupBy: {
+          args: Prisma.RegistrationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RegistrationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RegistrationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RegistrationCountAggregateOutputType> | number
+        }
+      }
+    }
+    VendorApplication: {
+      payload: Prisma.$VendorApplicationPayload<ExtArgs>
+      fields: Prisma.VendorApplicationFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VendorApplicationFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VendorApplicationFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        findFirst: {
+          args: Prisma.VendorApplicationFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VendorApplicationFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        findMany: {
+          args: Prisma.VendorApplicationFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>[]
+        }
+        create: {
+          args: Prisma.VendorApplicationCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        createMany: {
+          args: Prisma.VendorApplicationCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VendorApplicationCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>[]
+        }
+        delete: {
+          args: Prisma.VendorApplicationDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        update: {
+          args: Prisma.VendorApplicationUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        deleteMany: {
+          args: Prisma.VendorApplicationDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VendorApplicationUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VendorApplicationUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>[]
+        }
+        upsert: {
+          args: Prisma.VendorApplicationUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorApplicationPayload>
+        }
+        aggregate: {
+          args: Prisma.VendorApplicationAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVendorApplication>
+        }
+        groupBy: {
+          args: Prisma.VendorApplicationGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VendorApplicationGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VendorApplicationCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VendorApplicationCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1690,6 +1840,38 @@ export const ContactMessageScalarFieldEnum = {
 export type ContactMessageScalarFieldEnum = (typeof ContactMessageScalarFieldEnum)[keyof typeof ContactMessageScalarFieldEnum]
 
 
+export const RegistrationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  heardFrom: 'heardFrom',
+  accessibilityNeeds: 'accessibilityNeeds',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type RegistrationScalarFieldEnum = (typeof RegistrationScalarFieldEnum)[keyof typeof RegistrationScalarFieldEnum]
+
+
+export const VendorApplicationScalarFieldEnum = {
+  id: 'id',
+  businessName: 'businessName',
+  contactName: 'contactName',
+  phone: 'phone',
+  email: 'email',
+  category: 'category',
+  description: 'description',
+  website: 'website',
+  interests: 'interests',
+  eventYear: 'eventYear',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type VendorApplicationScalarFieldEnum = (typeof VendorApplicationScalarFieldEnum)[keyof typeof VendorApplicationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1899,6 +2081,48 @@ export type ListEnumContactInquiryTypeFieldRefInput<$PrismaModel> = FieldRefInpu
 
 
 /**
+ * Reference to a field of type 'RegistrationSource'
+ */
+export type EnumRegistrationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationSource'>
+    
+
+
+/**
+ * Reference to a field of type 'RegistrationSource[]'
+ */
+export type ListEnumRegistrationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RegistrationSource[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VendorCategory'
+ */
+export type EnumVendorCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VendorCategory'>
+    
+
+
+/**
+ * Reference to a field of type 'VendorCategory[]'
+ */
+export type ListEnumVendorCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VendorCategory[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VendorInterest[]'
+ */
+export type ListEnumVendorInterestFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VendorInterest[]'>
+    
+
+
+/**
+ * Reference to a field of type 'VendorInterest'
+ */
+export type EnumVendorInterestFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'VendorInterest'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -2076,6 +2300,8 @@ export type GlobalOmitConfig = {
   payment?: Prisma.PaymentOmit
   partnerLogo?: Prisma.PartnerLogoOmit
   contactMessage?: Prisma.ContactMessageOmit
+  registration?: Prisma.RegistrationOmit
+  vendorApplication?: Prisma.VendorApplicationOmit
 }
 
 /* Types for Logging */

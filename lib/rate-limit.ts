@@ -11,3 +11,9 @@ export const contactFormRateLimit = new Ratelimit({
   limiter: Ratelimit.slidingWindow(5, "10 m"),
   prefix: "ratelimit:contact",
 });
+
+export const vendorApplicationRateLimit = new Ratelimit({
+  redis,                                    // same Redis instance the contact limiter uses
+  limiter: Ratelimit.slidingWindow(5, "10 m"),
+  prefix: "ratelimit:vendor",
+});

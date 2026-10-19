@@ -65,3 +65,38 @@ export const ContactInquiryType = {
 } as const
 
 export type ContactInquiryType = (typeof ContactInquiryType)[keyof typeof ContactInquiryType]
+
+
+export const RegistrationSource = {
+  INSTAGRAM: 'INSTAGRAM',
+  X: 'X',
+  WHATSAPP: 'WHATSAPP',
+  FRIEND: 'FRIEND',
+  SYNCHUB: 'SYNCHUB',
+  OTHER: 'OTHER'
+} as const
+
+export type RegistrationSource = (typeof RegistrationSource)[keyof typeof RegistrationSource]
+
+
+export const VendorCategory = {
+  FASHION: 'FASHION',
+  ART: 'ART',
+  FOOD: 'FOOD',
+  TECH: 'TECH',
+  MEDIA: 'MEDIA',
+  CRAFT: 'CRAFT',
+  OTHER: 'OTHER'
+} as const
+
+export type VendorCategory = (typeof VendorCategory)[keyof typeof VendorCategory]
+
+
+export const VendorInterest = {
+  SELL: 'SELL',
+  SERVICE: 'SERVICE',
+  PRESENCE: 'PRESENCE',
+  UNSURE: 'UNSURE'
+} as const
+
+export type VendorInterest = (typeof VendorInterest)[keyof typeof VendorInterest]

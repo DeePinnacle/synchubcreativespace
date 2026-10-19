@@ -117,7 +117,14 @@ export function SponsorshipSection() {
                     View Package Details
                   </Button>
                   
-                  <Button className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+                  {/* <Button className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
+                    onClick={() => goToCheckout(tier.id)}
+                  >
+                    Select This Tier
+                    <ArrowRight className="w-3.5 h-3.5 stroke-[3]" />
+                  </Button>                   */}
+                  
+                  <Button disabled className="w-full h-14 py-3 px-4 rounded-xl bg-linear-to-r from-primary to-secondary cursor-disabled hover:opacity-90 text-xs font-extrabold text-[#0a0a0a] tracking-wider uppercase flex items-center justify-center gap-2 transition-all duration-200 shadow-md"
                     onClick={() => goToCheckout(tier.id)}
                   >
                     Select This Tier
@@ -220,7 +227,7 @@ export function SponsorshipSection() {
                   >
                     Close Window
                   </Button>
-                  <Button className="py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-extrabold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-2 transition-all shadow-md"
+                  <Button disabled className="py-3 px-6 rounded-xl bg-linear-to-r from-primary to-secondary text-xs font-extrabold text-[#0a0a0a] uppercase tracking-wider flex items-center gap-2 transition-all shadow-md"
                     onClick={() => goToCheckout(selectedTier.id)}
                   >
                     Secure This Tier

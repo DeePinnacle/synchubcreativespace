@@ -107,10 +107,10 @@ export function Navbar() {
 
                   {/* Get Tickets Link (Mobile) */}
                   <Link
-                    href="/events"
+                    href="/event-registration"
                     className="group inline-flex items-center justify-center rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
                   >
-                    Get Tickets
+                    Register
                   </Link>
                 </SheetFooter>
               </SheetContent>
@@ -143,10 +143,10 @@ export function Navbar() {
 
           {/* Solid Gradient Button */}
           <Link
-            href="/events"
+            href="/event-registration"
             className="group inline-flex items-center gap-2 rounded-full bg-linear-to-r from-primary to-secondary px-6 py-3 text-sm font-semibold text-white shadow-[0_0_24px_-6px_rgba(76,175,80,0.5)] transition-transform hover:scale-[1.02] active:scale-[0.99]"
           >
-            Get Tickets
+            Register
           </Link>
         </div>
       </div>

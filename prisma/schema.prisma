@@ -52,6 +52,32 @@ enum ContactInquiryType {
   TICKETS
 }
 
+enum RegistrationSource {
+  INSTAGRAM
+  X
+  WHATSAPP
+  FRIEND
+  SYNCHUB
+  OTHER
+}
+
+enum VendorCategory {
+  FASHION
+  ART
+  FOOD
+  TECH
+  MEDIA
+  CRAFT
+  OTHER
+}
+
+enum VendorInterest {
+  SELL
+  SERVICE
+  PRESENCE
+  UNSURE
+}
+
 model AdminUser {
   id           String    @id @default(cuid())
   email        String    @unique
@@ -63,26 +89,28 @@ model AdminUser {
 }
 
 model EventDay {
-  id          String            @id @default(cuid())
-  date        DateTime
-  title       String // e.g. "Cultural Day", "Tech & Innovation"
-  description String?
-  sessions    ScheduleSession[]
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
+  id            String            @id @default(cuid())
+  date          DateTime
+  title         String // e.g. "Cultural Day", "Tech & Innovation"
+  description   String?
+  sessions      ScheduleSession[]
+  registrations Registration[]
+  vendorApplications VendorApplication[]
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
 }
 
 model ScheduleSession {
-  id          String   @id @default(cuid())
-  eventDay    EventDay @relation(fields: [eventDayId], references: [id])
+  id          String    @id @default(cuid())
+  eventDay    EventDay  @relation(fields: [eventDayId], references: [id])
   eventDayId  String
   title       String
   startTime   DateTime
   endTime     DateTime
   description String?
   speakers    Speaker[]
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Speaker {
@@ -165,18 +193,18 @@ model Sponsor {
 }
 
 model SponsorshipOrder {
-  id                 String         @id @default(cuid())
-  sponsor            Sponsor        @relation(fields: [sponsorId], references: [id])
+  id                 String          @id @default(cuid())
+  sponsor            Sponsor         @relation(fields: [sponsorId], references: [id])
   sponsorId          String
   tier               SponsorshipTier @relation(fields: [tierId], references: [id])
   tierId             String
-  isCustom           Boolean        @default(false) // "Request a Custom Package" path
-  paymentStatus      PaymentStatus  @default(PENDING)
+  isCustom           Boolean         @default(false) // "Request a Custom Package" path
+  paymentStatus      PaymentStatus   @default(PENDING)
   paymentMethod      PaymentMethod? // INVOICE = offline bank transfer path
   payment            Payment?
-  showOnPartnersWall Boolean        @default(false) // flips true once PAID
-  createdAt          DateTime       @default(now())
-  updatedAt          DateTime       @updatedAt
+  showOnPartnersWall Boolean         @default(false) // flips true once PAID
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
 }
 
 model Payment {
@@ -213,3 +241,33 @@ model ContactMessage {
   createdAt   DateTime           @default(now())
 }
 
+model Registration {
+  id                 String             @id @default(cuid())
+  name               String
+  email              String             @unique
+  phone              String
+  heardFrom          RegistrationSource
+  accessibilityNeeds String?
+  days               EventDay[] // implicit many-to-many: any combination of the 6 days
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+}
+
+model VendorApplication {
+  id           String           @id @default(cuid())
+  businessName String
+  contactName  String
+  phone        String
+  email        String
+  category     VendorCategory
+  description  String
+  website      String?
+  interests    VendorInterest[]
+  days         EventDay[] // implicit many-to-many: any combination of the 6 days
+  eventYear    Int              @default(2026)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  // One application per email per edition of the event.
+  @@unique([email, eventYear])
+}
