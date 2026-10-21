@@ -7,16 +7,6 @@ const nextConfig: NextConfig = {
     "*.ngrok-free.dev",
     "*.ngrok.io",
   ],
-
-  async redirects() {
-    return [
-      {
-        source: "/:path*",
-        destination: "https://thesynchubcreativecenter.com/:path*",
-        permanent: true,
-      },
-    ];
-  },
 };
 
 export default nextConfig;
